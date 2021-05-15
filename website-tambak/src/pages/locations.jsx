@@ -14,7 +14,7 @@ const Locations = () => {
       <div>
         <h3 class="d-flex-center position-ref">Shrimp Pond Locations</h3>
       </div>
-      <div>
+      <div class="row align-items-center my-2">
         <div id="locMaps">
           {/* <MyMapComponent
           isMarkerShown
@@ -33,7 +33,20 @@ const Locations = () => {
             loading="lazy"
           ></iframe>
         </div>
-        <div></div>
+        <div>
+          <div class="col-lg-4">
+            <h1 class="font-weight-light">name</h1>
+            <p>
+              This is a template that is great for small businesses. It doesn't
+              have too much fancy flare to it, but it makes a great use of the
+              standard Bootstrap core components. Feel free to use this template
+              for any project you want!
+            </p>
+            <a class="btn btn-primary" href="#">
+              Action!
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   );

@@ -25,6 +25,7 @@ import Hardwares from "./pages/hardwares";
 import Features from "./pages/features";
 import HowTo from "./pages/howTo";
 import AboutUs from "./pages/aboutUs";
+import SignIn from "./pages/signIn";
 
 import logo from "./logo.svg";
 import "./App.css";
@@ -48,6 +49,7 @@ class App extends Component {
             <Route exact path="/howTo" component={HowTo} />
             <Route exact path="/aboutUs" component={AboutUs} />
             <Route exact path="/myKolam" component={MyKolamMain} />
+            <Route exact path="/signIn" component={SignIn} />
             <Redirect to="404" />
           </Switch>
         </Router>
