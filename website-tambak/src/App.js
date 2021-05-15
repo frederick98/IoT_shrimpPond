@@ -7,6 +7,12 @@ import {
   NavLink,
   Redirect,
 } from "react-router-dom";
+import {
+  withScriptjs,
+  withGoogleMap,
+  GoogleMap,
+  Marker,
+} from "react-google-maps";
 
 // Page List
 import NavigationBar from "./pages/layout/navbar";
