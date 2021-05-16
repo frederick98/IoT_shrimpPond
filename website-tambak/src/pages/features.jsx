@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const Features = () => {
   return (
     <div class="container">
-      <div class="row">
+      <div class="row justify-content-md-center">
         <div class="my-4 col-auto">
           <h1>Application Features</h1>
         </div>

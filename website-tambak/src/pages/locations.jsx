@@ -11,8 +11,8 @@ import {
 const Locations = () => {
   return (
     <div class="container">
-      <div class="row">
-        <h3 class="d-flex-center position-ref">Shrimp Pond Locations</h3>
+      <div class="row justify-content-md-center my-4 col-auto">
+        <h1 class="d-flex-center position-ref">Shrimp Pond Locations</h1>
       </div>
       <div class="row">
         <div id="locMaps" class="col-sm">

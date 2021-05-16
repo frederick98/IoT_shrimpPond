@@ -4,20 +4,18 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 const MainPage = () => {
   return (
-    <div className="row">
-      <div className="col-lg-6 col-md-offset-3">
-        <div id="title">
-          <h1>WSN-Based Water Quality</h1>
-          <br />
-          <h1>Monitoring Application</h1>
-          <br />
-          <h1>for Shrimp Pond</h1>
+    <div class="container">
+      <div class="container align-content-center">
+        <div class="row justify-content-start">
+          <div id="title" class="col-8">
+            <h1>
+              WSN-Based Water Quality
+              <br /> Monitoring Application
+            </h1>
+            <br />
+            <h5>by Frederick - 2016730040</h5>
+          </div>
         </div>
-        <div id="subtitle">
-          <br />
-          <h5>by Frederick - 2016730040</h5>
-        </div>
-        <br />
         <div>
           <button class="btn-round" href="signIn">
             Login
