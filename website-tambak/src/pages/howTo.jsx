@@ -4,9 +4,9 @@ import { Link } from "react-router-dom";
 const HowTo = () => {
   return (
     <div class="container">
-      <div class="row">
+      <div class="row justify-content-md-center">
         <div class="my-4 col-auto">
-          <h1>How-to-Use Our Applications</h1>
+          <h1>Using Our Applications</h1>
         </div>
       </div>
       <div class="row">
