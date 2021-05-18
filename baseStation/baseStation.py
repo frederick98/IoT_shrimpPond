@@ -35,6 +35,13 @@ serial = serial.Serial(
 )
 
 # Database setups
+dbTest = mysql.connector.connect(
+    host = 'localhost',
+    database = 'raspiConnectionTest',
+    user = 'eric',
+    password = 'Solaiman1'
+)
+
 db = mysql.connector.connect(
     host = 'localhost',
     database = 'raspiConnectionTest',
