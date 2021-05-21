@@ -1,4 +1,8 @@
 /**
+ * Arduino node codes made by frederick 2016730040
+ */
+
+/**
  * list of library needed
  */
 #include <OneWire.h>
@@ -6,16 +10,10 @@
 #include "DFRobot_EC.h"
 #include <EEPROM.h>
 #include <SoftwareSerial.h>
-//#include 
 
 /*
- * node name initialization
- */
- String N1 = "N1";
-
-/*
- * connection & data transmission setup, XBee's DOUT(TX) is connected to pin 10 
- * (Arduino's software RX), XBee's DIN(RX) is connected to pin 11 (Arduino's 
+ * connection & data transmission setup, XBee's DOUT(TX) is connected to pin 1 
+ * (Arduino's software RX), XBee's DIN(RX) is connected to pin 0 (Arduino's 
  * Software TX)
  */
 SoftwareSerial xbee(1, 0);
@@ -31,6 +29,7 @@ int sensor_turbidity_pin = A0;
 #define sensor_ph_pin A1
 float voltage, phValue, temperature = 25;
 DFRobot_PH ph;
+float phValue2 = 0;
 
 /*
  * salinity sensor setup, dengan input disimpan pada analog pin A3
@@ -38,7 +37,8 @@ DFRobot_PH ph;
 #define sensor_ec_pin A3
 float ecVoltage, ecValue, ecTemperature = 25;
 DFRobot_EC ec;
- 
+float ecValue2 = 0;
+
 /*
  * temperature sensor setup, dengana input disimpan pada digital pin 2 berikut temperature 
  * chipnya
@@ -47,18 +47,33 @@ int sensor_temperature_pin = 2;
 OneWire ds(sensor_temperature_pin);
 
 /*
+ * node name initialization
+ */
+ String N1 = "N1";
+ String N2 = "N2";
+ String N3 = "N3";
+
+/**
  * any other variables initialization
  */
 String delimiter = "/";
 
+/*
+ * put setup code here to run once:
+ * Note:
+ *  - sensor setup MUST WROTE BEFORE SERIAL, otherwise it'll print their unnecessary
+ *    status code.
+ */
 void setup() {
-  // baud rate: 9600
-  Serial.begin(9600);
   ph.begin();
   ec.begin();
+  Serial.begin(9600); //<- still bugs here about message spacing
   xbee.begin(9600);
 }
 
+/*
+ * put main code here, to run repeatedly:
+ */
 void loop() {
 //  Serial.println("++++++++++++++++++++++++++++++++++++++++");
 //  
@@ -68,36 +83,62 @@ void loop() {
 //  Serial.println("========================================");
 //  
 //  Serial.print("pH Sensor Readings: ");
-//  pHSensing();
+    pHSensing();
 //  Serial.println("========================================");
 //
 //  Serial.print("Salinity Sensor Readings: ");
-//  salinitySensing();
+    salinitySensing();
 //  Serial.println("========================================");
 //  
 //  Serial.print("Temperature Sensor Readings: ");
 //  Serial.println(temperatureSensing());
 //  Serial.println("========================================");
-  // sending data
-  //sensorReading();
-  String x = dataConvert2();
-  //Serial.println(x);
-  sendMessage(x);
 
-  // kasih delay biar bacanya tiap 5 detik
-  //delay(3000);
-}
-
-String sensorReading(){
+  // start sensor reading, then send the data to xbee
   String message = dataConvert();
-  
+
+  // send the message using xbee (fixed, no more calling sendMessage method)
+  //sendMessage(message);
+  xbee.print(message);
   Serial.println(message);
-  
-  return dataConvert();
-  
+  // sets delay so it repeated every 1 secs
+  delay(1000);
 }
+
 /*
- * method untuk melakukan konversi hasil bacaan dari sensor temperatur
+ * this methods converts node status and sensor reading results to a string, with '/'
+ * symbol as delimiter 
+ */
+String dataConvert(){
+  // collect sensor results and convert them to string
+  //String temp = String(30.4);
+  //String turb = String(3.85);
+  //String pH = String(6.87);
+  //String sal = String(0.05);
+  //String DO = String(5.5);
+  
+  String temp = String(temperatureSensing());
+  String turb = String(turbiditySensing());
+  String pH = String(phValue2);
+  String sal = String(ecValue2);
+  String DO = String(doSensing());
+  // wrap the results, adding delimiter then return the data
+  String data = N1 + delimiter + temp + delimiter + turb + delimiter + pH + delimiter + sal + delimiter + DO;
+  //Serial.println(data);
+  return data;
+}
+
+/*
+ * THIS METHOD IS NO LONGER USED
+ * this method sends a message through xbee
+ */
+String sendMessage(String message){
+  xbee.print(message);
+  Serial.println("terkirim");
+ }
+
+ /*
+ * gets temperature's reading conversion result
  */
 float temperatureSensing(){
   byte data[12];
@@ -174,9 +215,12 @@ float pHSensing(){
         //Serial.print("temperature:");
         //Serial.print(temperature,1);
         //Serial.print("^C  pH:");
-        // print hasil si ph hingga 2 angka di blkg koma
-        Serial.println(phValue,2);                 
+        // print hasil si ph hingga 2 angka di blkg koma 
+        phValue2 = phValue; 
+        //Serial.println(phValue2,2);
+        //Serial.println(phValue,2);  
     }
+    //return phValue2;
     // calibration process by Serail CMD
     //ph.calibration(voltage,temperature);           
 }
@@ -203,9 +247,12 @@ float salinitySensing(){
       //Serial.print(temperature,1);
       //Serial.print("^C  EC:");
       // baca nilai konduktivitas hingga 2 angka di blkg koma
-      Serial.print(ecValue,2);
-      Serial.println(" ms/cm");
+      ecValue2 = ecValue;
+      //Serial.println(ecValue2);
+      //Serial.print(ecValue,2);
+      //Serial.println(" ms/cm");
     }
+    //return ecValue2;
     // calibration process by Serail CMD
     //ec.calibration(voltage,temperature);          
 }
@@ -273,70 +320,3 @@ boolean sensorStatus(){
     }
   }
 }
-
-/*
- * this methods converts node status and sensor reading results to a string, with ';'
- * symbol as delimiter 
- */
-String dataConvert(){
-  // collect node & sensor status, then convert them to string
-  boolean nodeOnline = nodeStatus();
-  boolean sensorOnline = sensorStatus();
-  String nodeStatus = "";
-  String sensorStatus = "";
-  if(nodeOnline == true){
-    nodeStatus = "Online";
-    if(sensorOnline == true){
-      sensorStatus = "Normal";
-    }
-    else{
-      sensorStatus = "Not Working";
-    }
-  }
-  else{
-    nodeStatus = "Offline";
-    if(sensorOnline == true){
-      sensorStatus = "Normal";
-    }
-    else{
-      sensorStatus = "Not Working";
-    }
-  }
-  
-  // collect sensor results and convert them to string
-  String temp = String(30.4);
-  String turb = String(3.85);
-  String pH = String(6.87);
-  String sal = String(34.55);
-  String DO = String(5.5);
-//  String temp = String(temperatureSensing());
-//  String turb = String(turbiditySensing());
-//  String pH = String(pHSensing());
-//  String sal = String(salinitySensing());
-//  String DO = String(doSensing());
-
-  String data = N1 + delimiter + temp + delimiter + turb + delimiter + pH + delimiter + sal + delimiter + DO + delimiter + nodeStatus + delimiter + sensorStatus;
-  //Serial.println(data);
-  return data;
-  //delay(3000);
- }
-
-String dataConvert2(){
-  // collect sensor results and convert them to string
-  String temp = String(30.4);
-  String turb = String(3.85);
-  String pH = String(6.87);
-  String sal = String(34.55);
-  String DO = String(5.5);
-
-  String data = N1 + delimiter + temp + delimiter + turb + delimiter + pH + delimiter + sal + delimiter + DO;
-  return data;
-}
-
-/*
- * this method sends a message through xbee
- */
-String sendMessage(String message){
-  xbee.print(message);
-  Serial.println("terkirim");
- }
