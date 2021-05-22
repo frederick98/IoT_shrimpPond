@@ -1,79 +1,63 @@
 import React, { Component } from "react";
-import {
-  BrowserRouter as Router,
-  Route,
-  Switch,
-  Link,
-  NavLink,
-  Redirect,
-} from "react-router-dom";
+import { HashRouter, Route, Switch, Redirect } from "react-router-dom";
+import "./scss/style.scss";
 
-// Page List
-import NavigationBar from "./pages/layout/navbar";
-import MainPage from "./pages";
-import MyKolamMain from "./pages/myKolam";
-import UsersPage from "./pages/users";
-import NotFoundPage from "./pages/404";
-import Locations from "./pages/locations";
-import Hardwares from "./pages/hardwares";
-import Features from "./pages/features";
-import HowTo from "./pages/howTo";
-import AboutUs from "./pages/aboutUs";
-//import SignIn from "./pages/signIn";
-import Login from "./pages/signIn";
+const loading = (
+  <div className="pt-3 text-center">
+    <div className="sk-spinner sk-spinner-pulse"></div>
+  </div>
+);
 
-import logo from "./logo.svg";
-import "./App.css";
+// Containers
+const TheLayout = React.lazy(() => import("./containers/TheLayout"));
+
+// Pages
+const Login = React.lazy(() => import("./views/pages/login/Login"));
+const Register = React.lazy(() => import("./views/pages/register/Register"));
+const Page404 = React.lazy(() => import("./views/pages/page404/Page404"));
+const Page500 = React.lazy(() => import("./views/pages/page500/Page500"));
+
 class App extends Component {
   render() {
     return (
-      <React.Fragment>
-        <Router>
-          {/*All our Routes goes here!*/}
-          <NavigationBar />
+      <HashRouter>
+        <React.Suspense fallback={loading}>
           <Switch>
-            {/*Switch decides which component to show based on the current URL*/}
-            <Route exact path="/">
-              <MainPage />
-            </Route>
-            <Route exact path="/users" component={UsersPage} />
-            <Route exact path="/404" component={NotFoundPage} />
-            <Route exact path="/locations" component={Locations} />
-            <Route exact path="/hardwares" component={Hardwares} />
-            <Route exact path="/features" component={Features} />
-            <Route exact path="/howTo" component={HowTo} />
-            <Route exact path="/aboutUs" component={AboutUs} />
-            <Route exact path="/myKolam" component={MyKolamMain} />
-            <Route exact path="/login" component={Login}>
-              <Login />
-            </Route>
-            <Redirect to="404" />
+            <Route
+              exact
+              path="/login"
+              name="Login Page"
+              render={(props) => <Login {...props} />}
+            />
+            <Route
+              exact
+              path="/register"
+              name="Register Page"
+              render={(props) => <Register {...props} />}
+            />
+            <Route
+              exact
+              path="/404"
+              name="Page 404"
+              render={(props) => <Page404 {...props} />}
+            />
+            <Route
+              exact
+              path="/500"
+              name="Page 500"
+              render={(props) => <Page500 {...props} />}
+            />
+            <Route
+              path="/"
+              name="Home"
+              render={(props) => <TheLayout {...props} />}
+            />
+            <Redirect to="/404" />
           </Switch>
-        </Router>
-      </React.Fragment>
+        </React.Suspense>
+      </HashRouter>
     );
   }
 }
 
 export default App;
-
-// function App() {
-//   return (
-//     <div className="App">
-//       <header className="App-header">
-//         <img src={logo} className="App-logo" alt="logo" />
-//         <p>
-//           Edit <code>src/App.js</code> and save to reload.
-//         </p>
-//         <a
-//           className="App-link"
-//           href="https://reactjs.org"
-//           target="_blank"
-//           rel="noopener noreferrer"
-//         >
-//           Learn React
-//         </a>
-//       </header>
-//     </div>
-//   );
-// }
