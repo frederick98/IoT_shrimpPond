@@ -7,12 +7,6 @@ import {
   NavLink,
   Redirect,
 } from "react-router-dom";
-import {
-  withScriptjs,
-  withGoogleMap,
-  GoogleMap,
-  Marker,
-} from "react-google-maps";
 
 // Page List
 import NavigationBar from "./pages/layout/navbar";
@@ -25,7 +19,7 @@ import Hardwares from "./pages/hardwares";
 import Features from "./pages/features";
 import HowTo from "./pages/howTo";
 import AboutUs from "./pages/aboutUs";
-import SignIn from "./pages/signIn";
+//import SignIn from "./pages/signIn";
 import Login from "./pages/signIn";
 
 import logo from "./logo.svg";
@@ -50,7 +44,9 @@ class App extends Component {
             <Route exact path="/howTo" component={HowTo} />
             <Route exact path="/aboutUs" component={AboutUs} />
             <Route exact path="/myKolam" component={MyKolamMain} />
-            <Route exact path="/signIn" component={Login} />
+            <Route exact path="/login" component={Login}>
+              <Login />
+            </Route>
             <Redirect to="404" />
           </Switch>
         </Router>

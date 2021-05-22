@@ -186,6 +186,9 @@ while mainMenu:
             main()
     elif(menu == "1"):
         # apps is running
+        print("Monitoring Started...")
+        print("Received Data: ")
+        print("Node ID / Temperature / Turbidity / pH Stat / Salinity / DO Stat / Date & Time Received")
         while isRunning:
             # get data from arduino
             decoded = serial.readline().decode("ascii").strip()
@@ -195,6 +198,7 @@ while mainMenu:
                 #print("Received data: ", future.result())
                 if future.result() != None:
                     future2 = executor.submit(updateDB, future.result())
+                    print(future.result())
                     print("Data uploaded to DB")
     else:
         print("Wrong Menu, Apps is restarting...")

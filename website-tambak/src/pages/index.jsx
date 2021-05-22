@@ -17,9 +17,12 @@ const MainPage = () => {
           </div>
         </div>
         <div>
-          <button class="btn-round" href="signIn">
+          <a class="btn btn-round btn-dark" href="./login">
             Login
-          </button>
+          </a>
+          {/* <button class="btn-round" onClick={"signIn"}>
+            Login
+          </button> */}
         </div>
       </div>
     </div>
