@@ -5,7 +5,7 @@ const _nav = [
   {
     _tag: "CSidebarNavItem",
     name: "Main Page",
-    to: "/dashboard",
+    to: "/mainPage",
     icon: <CIcon name="cil-speedometer" customClasses="c-sidebar-nav-icon" />,
     badge: {
       color: "info",
@@ -29,7 +29,7 @@ const _nav = [
   {
     _tag: "CSidebarNavItem",
     name: "Data Graphics Diagram",
-    to: "",
+    to: "/admins/dataGraphics",
     icon: "cil-graph",
     badge: {
       color: "info",
@@ -39,7 +39,7 @@ const _nav = [
   {
     _tag: "CSidebarNavItem",
     name: "Node Status Checking",
-    to: "",
+    to: "/admins/nodeCheck",
     icon: "cil-check-circle",
   },
   {
@@ -93,6 +93,14 @@ const _nav = [
     icon: "cib-about-me",
   },
 
+  {
+    _tag: "CSidebarNavDivider",
+    className: "m-5",
+  },
+  {
+    _tag: "CSidebarNavDivider",
+    className: "m-5",
+  },
   {
     _tag: "CSidebarNavDivider",
     className: "m-5",

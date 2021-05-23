@@ -60,7 +60,10 @@ const Widgets = React.lazy(() => import("./views/widgets/Widgets"));
 const Users = React.lazy(() => import("./views/users/Users"));
 const User = React.lazy(() => import("./views/users/User"));
 
+const MainPage = React.lazy(() => import("./views/home"));
 const Location = React.lazy(() => import("./views/maps/location"));
+const DataGraphics = React.lazy(() => import("./views/admins/dataGraphics"));
+const NodeCheck = React.lazy(() => import("./views/admins/nodeCheck"));
 const HowTo = React.lazy(() => import("./views/help/howTo"));
 const Features = React.lazy(() => import("./views/authors/features"));
 const Hardwares = React.lazy(() => import("./views/authors/hardwares"));
@@ -92,7 +95,18 @@ const routes = [
   { path: "/buttons", name: "Buttons", component: Buttons, exact: true },
   { path: "/buttons/buttons", name: "Buttons", component: Buttons },
 
+  { path: "/mainPage", name: "Main", component: MainPage },
   { path: "/location", name: "Pond Location", component: Location },
+  {
+    path: "/admins/dataGraphics",
+    name: "Data Graphics Diagram",
+    component: DataGraphics,
+  },
+  {
+    path: "/admins/nodeCheck",
+    name: "Node Status Checking",
+    component: NodeCheck,
+  },
   { path: "/help/howTo", name: "How-To-Use", component: HowTo },
   { path: "/credits/aboutUs", name: "Author", component: AboutUs },
   { path: "/credits/features", name: "Features", component: Features },

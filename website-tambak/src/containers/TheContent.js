@@ -34,7 +34,8 @@ const TheContent = () => {
                 )
               );
             })}
-            <Redirect from="/" to="/404" />
+            <Redirect from="/" to="/mainPage" />;
+            <Redirect to="/404" />;
           </Switch>
         </Suspense>
       </CContainer>

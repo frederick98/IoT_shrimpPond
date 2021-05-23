@@ -1,8 +1,16 @@
+## Create React App
+
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app)
+
+It uses Sass (with .scss). The styles are loaded at the template level with `node-sass-chokidar` css preprocessor
+
+Dependencies are handled by **npm**.
+
 ## Installation
 
 ### Clone repo
 
-``` bash
+```bash
 # clone the repo
 $ git clone https://github.com/coreui/coreui-free-react-admin-template.git my-project
 
@@ -17,7 +25,7 @@ $ npm install
 
 Copy all your files to your project folder and then,
 
-``` bash
+```bash
 # go into app's directory
 $ cd my-project
 
@@ -25,26 +33,21 @@ $ cd my-project
 $ npm install
 ```
 
-## Create React App
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app)
+### Usage
 
-It uses Sass (with .scss). The styles are loaded at the template level with `node-sass-chokidar` css preprocessor
-
-Dependencies are handled by **npm**.
-
-## Usage
 `npm i` - to install dependencies
 
-## Scripts 
+## Scripts
+
 `npm start` for developing (it runs webpack-dev-server)  
-`npm run build` to run a dev build  
+`npm run build` to run a dev build
 
 see also:
 [CRA docs](https://create-react-app.dev/docs/getting-started)
 
 ### Basic usage
 
-``` bash
+```bash
 # dev server with hot reload at http://localhost:3000
 $ npm start
 ```
@@ -58,6 +61,7 @@ It correctly bundles React in production mode and optimizes the build for the be
 
 The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed!
+
 ```bash
 # build for production with minification
 $ npm run build
@@ -73,8 +77,7 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-
-## What's included
+## File Structure
 
 Within the download you'll find the following directories and files, logically grouping common assets and providing both compiled and minified variations. You'll see something like this:
 
@@ -87,7 +90,7 @@ website-tambak
 │   ├── assets/      #assets - js icons object
 │   ├── containers/  #container source - template layout
 |   │   ├── _nav.js  #sidebar config
-|   │   └── ...      
+|   │   └── ...
 │   ├── scss/        #user scss/css source
 │   ├── views/       #views source
 │   ├── App.js
@@ -95,22 +98,10 @@ website-tambak
 │   ├── polyfill.js
 │   ├── index.js
 │   ├── routes.js    #routes config
-│   └── store.js     #template state example 
+│   └── store.js     #template state example
 │
 └── package.json
 ```
-
-## Documentation
-
-The documentation for the CoreUI Admin Template is hosted at our website [CoreUI for React](https://coreui.io/react/)
-
-### :film_strip: How to setup coreui react theme in laravel. Video tutorial available [here](https://youtu.be/HVVpbpNUJ8M)
-
-## Versioning
-
-For transparency into our release cycle and in striving to maintain backward compatibility, CoreUI Free Admin Template is maintained under [the Semantic Versioning guidelines](http://semver.org/).
-
-See [the Releases section of our project](https://github.com/coreui/coreui-free-react-admin-template/releases) for changelogs for each release version.
 
 ## Issues
 
@@ -118,7 +109,6 @@ Before opening an issue:
 
 - [Search for duplicate or closed issues](https://github.com/coreui/coreui-free-react-admin-template/issues?utf8=%E2%9C%93&q=is%3Aissue)
 - Prepare a [reduced test case](https://css-tricks.com/reduced-test-cases/) for any bugs
-
 
 When asking general "how to" questions:
 
