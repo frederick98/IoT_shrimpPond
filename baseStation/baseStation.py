@@ -122,7 +122,7 @@ def updateDB(data):
     # will only run once, because its outside the thread
     db = mysql.connector.connect(
     host = 'localhost',
-    database = 'raspiConnectionTest',
+    database = 'SkripsiEric',
     user = 'eric',
     password = 'Solaiman1'
     )
@@ -149,8 +149,8 @@ def updateDB(data):
     cursor = db.cursor(buffered = True)
     
     # creating query
-    query = ("INSERT INTO connTest(time, node, temp, turb, pH, sal, do) VALUES (%s, %s , %s, %s, %s, %s, %s, %s)")
-    values = (readTime, node, temp, turb, pH, sal, do)
+    query = ("INSERT INTO Pengamatan(idTambak, idNode, waktuPengamatan, temperature, turbidity, pH, salinity, DO) VALUES (%s, %s , %s, %s, %s, %s, %s, %s)")
+    values = (1, node, readTime, temp, turb, pH, sal, do)
     
     # executing query
     cursor.execute(query, values)

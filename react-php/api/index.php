@@ -11,7 +11,7 @@ function login()
        require 'config.php'; 
        $json = json_decode(file_get_contents('php://input'), true); 
        $username = $json['username']; $password = $json['password']; 
-       $userData =''; $query = "select * from users where username='$username' and password='$password'"; 
+       $userData =''; $query = "select * from User where username='$username' and password='$password'"; 
        $result= $db->query($query);
        $rowCount=$result->num_rows;
              
@@ -63,18 +63,18 @@ function signup() {
 
             $userData = '';
             
-            $result = $db->query("select * from users where username='$username' or email='$email'");
+            $result = $db->query("select * from User where username='$username' or email='$email'");
             $rowCount=$result->num_rows;
             //echo '{"text": "'.$rowCount.'"}';
            
             if($rowCount==0)
             {
                                 
-                $db->query("INSERT INTO users(username,password,email,name)
+                $db->query("INSERT INTO User(username,password,email,namaUser)
                             VALUES('$username','$password','$email','$name')");
 
                 $userData ='';
-                $query = "select * from users where username='$username' and password='$password'";
+                $query = "select * from User where username='$username' and password='$password'";
                 $result= $db->query($query);
                 $userData = $result->fetch_object();
                 $user_id=$userData->user_id;

@@ -25,7 +25,15 @@ const getBadge = (status) => {
   }
 };
 
-const fields = ["name", "registered", "role", "status"];
+const headers = [
+  "Node ID",
+  "Time",
+  "Temperature (C)",
+  "Turbidity (MTU)",
+  "pH",
+  "Salinity (ppt)",
+  "DO",
+];
 
 const Monitoring = () => {
   return (
@@ -37,13 +45,13 @@ const Monitoring = () => {
             <CCardBody>
               <CDataTable
                 items={usersData}
-                fields={fields}
+                fields={headers}
                 dark
                 hover
                 striped
                 bordered
                 size="sm"
-                itemsPerPage={10}
+                itemsPerPage={5}
                 pagination
                 scopedSlots={{
                   status: (item) => (
@@ -66,13 +74,13 @@ const Monitoring = () => {
             <CCardBody>
               <CDataTable
                 items={usersData}
-                fields={fields}
+                fields={headers}
                 dark
                 hover
                 striped
                 bordered
                 size="sm"
-                itemsPerPage={10}
+                itemsPerPage={5}
                 pagination
                 scopedSlots={{
                   status: (item) => (
