@@ -12,6 +12,10 @@ import {
   cilPin,
   cilDevices,
   cilAccountLogout,
+  cilTextSize,
+  cilFork,
+  cilBolt,
+  cilContact,
 } from "@coreui/icons";
 import {
   cibSkype,
@@ -145,6 +149,10 @@ export const icons = Object.assign(
     cilPin,
     cilDevices,
     cilAccountLogout,
+    cilTextSize,
+    cilFork,
+    cilBolt,
+    cilContact,
   },
   {},
   {

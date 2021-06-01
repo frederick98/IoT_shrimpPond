@@ -60,7 +60,7 @@ class App extends Component {
               name="Home"
               render={(props) => <TheLayout {...props} />}
             />
-            {/* <Redirect to="/404" /> */}
+            <Redirect to="/404" />
           </Switch>
         </React.Suspense>
       </HashRouter>

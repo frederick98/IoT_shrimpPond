@@ -3,11 +3,11 @@ import React from "react";
 const Features = () => {
   return (
     <div class="container">
-      {/* <div class="row justify-content-md-center">
+      <div class="row justify-content-md-center">
         <div class="my-4 col-auto">
           <h1>Application Features</h1>
         </div>
-      </div> */}
+      </div>
       <div class="row">
         <div class="col-7">
           <img

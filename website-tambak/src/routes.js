@@ -64,6 +64,7 @@ const MainPage = React.lazy(() => import("./views/home"));
 const Location = React.lazy(() => import("./views/maps/location"));
 const DataGraphics = React.lazy(() => import("./views/admins/dataGraphics"));
 const NodeCheck = React.lazy(() => import("./views/admins/nodeCheck"));
+const Monitoring = React.lazy(() => import("./views/admins/monitoring"));
 const HowTo = React.lazy(() => import("./views/help/howTo"));
 const Features = React.lazy(() => import("./views/authors/features"));
 const Hardwares = React.lazy(() => import("./views/authors/hardwares"));
@@ -106,6 +107,11 @@ const routes = [
     path: "/admins/nodeCheck",
     name: "Node Status Checking",
     component: NodeCheck,
+  },
+  {
+    path: "/admins/monitoring",
+    name: "Monitoring",
+    component: Monitoring,
   },
   { path: "/help/howTo", name: "How-To-Use", component: HowTo },
   { path: "/credits/aboutUs", name: "Author", component: AboutUs },

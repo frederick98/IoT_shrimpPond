@@ -48,3 +48,8 @@ Setup Raspberry PI:
 		- https://www.raspberrypi.org/forums/viewtopic.php?t=78142
 		
 		
+DB Setup:
+	- DB name = SkripsiEric
+	- init sql:
+		insert into User(idUser, username, password, jabatan, namaUser, email)
+			values(1, 'admin', 'root', 1, 'Admin Utama', 'admin@mykolam.com')
