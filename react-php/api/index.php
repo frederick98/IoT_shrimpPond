@@ -1,108 +1,42 @@
 <?php 
+/**
+ * This is a CORS-compliant method. It'll allow any GET, POST, or OPTION requests from any origin.
+ * -> this method isn't necessary IF YOU HAVE SETUP CORS IN YOUR SERVER.
+ *
+ */
+// function cors() {
+//     // Allow from any origin
+//     if (isset($_SERVER['HTTP_ORIGIN'])) {
+//         // Decide if the origin in $_SERVER['HTTP_ORIGIN'] is one
+//         // you want to allow, and if so:
+//         header("Access-Control-Allow-Origin: {$_SERVER['HTTP_ORIGIN']}");
+//         header('Access-Control-Allow-Credentials: true');
+//         header('Access-Control-Max-Age: 86400');    // cache for 1 day
+//     }
 
-$type = $_GET['tp']; 
-if($type=='signup') signup(); 
-elseif($type=='login') login(); 
-elseif($type=='feed') feed(); 
-elseif($type=='feedUpdate') feedUpdate(); 
-elseif($type=='feedDelete') feedDelete(); 
-function login() 
-{ 
-       require 'config.php'; 
-       $json = json_decode(file_get_contents('php://input'), true); 
-       $username = $json['username']; $password = $json['password']; 
-       $userData =''; $query = "select * from User where username='$username' and password='$password'"; 
-       $result= $db->query($query);
-       $rowCount=$result->num_rows;
-             
-        if($rowCount>0)
-        {
-            $userData = $result->fetch_object();
-            $user_id=$userData->user_id;
-            $userData = json_encode($userData);
-            echo '{"userData":'.$userData.'}';
+//     // Access-Control headers are received during OPTIONS requests
+//     if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
+//         if (isset($_SERVER['HTTP_ACCESS_CONTROL_REQUEST_METHOD']))
+//             // may also be using PUT, PATCH, HEAD etc
+//             header("Access-Control-Allow-Methods: GET, POST, OPTIONS");         
 
-            
-        }
-        else 
-        {
-            echo '{"error":"Wrong username and password"}';
-        }
+//         if (isset($_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS']))
+//             header("Access-Control-Allow-Headers: {$_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS']}");
 
-    
+//         exit(0);
+//     }
+//     echo "You have CORS!";
+// }
+
+require 'config.php';
+
+$sql = "SELECT * FROM Pengamatan WHERE idNode=1 ORDER BY waktuPengamatan DESC LIMIT 10";
+$result = mysqli_query($connection, $sql);
+
+$json_array = array();
+while($row = mysqli_fetch_assoc($result)){
+    $json_array[] = $row;
 }
 
-
-
-function node1(){
-    require 'config.php';
-    $json = json_decode(fil_get_contents('php://input'), true);
-
-    $sql = "SELECT * FROM Pengamatan WHERE idNode=1 ORDER BY waktuPengamatan DESC LIMIT 10";
-    $result = $db->query($sql);
-
-    $nodeInfo = mysqli_fetch_all($result, MYSQLI_ASSOC);
-    $nodeInfo = json_encode($nodeInfo);
-
-    echo '{"nodeInfo":' . $nodeInfo . '}';
-}
-
-// function feed(){
-//     require 'config.php';
-//     $json = json_decode(file_get_contents('php://input'), true);
-//     $user_id=$json['user_id'];
-    
-//     $query = "SELECT * FROM feed WHERE user_id=$user_id ORDER BY feed_id DESC LIMIT 10";
-//     //$query = "SELECT * FROM feed ";
-//     $result = $db->query($query); 
-
-//     $feedData = mysqli_fetch_all($result,MYSQLI_ASSOC);
-//     $feedData=json_encode($feedData);
-    
-//     echo '{"feedData":'.$feedData.'}';
-// }
-
-// function feedUpdate(){
-
-//     require 'config.php';
-//     $json = json_decode(file_get_contents('php://input'), true);
-//     $user_id=$json['user_id'];
-//     $feed=$json['feed'];
-    
-//     $feedData = '';
-//     if($user_id !=0)
-//     {
-//         $query = "INSERT INTO feed ( feed, user_id) VALUES ('$feed','$user_id')";
-//         $db->query($query);              
-//     }
-//     $query = "SELECT * FROM feed WHERE user_id=$user_id ORDER BY feed_id DESC LIMIT 10";
-//     $result = $db->query($query); 
-
-//     $feedData = mysqli_fetch_all($result,MYSQLI_ASSOC);
-//     $feedData=json_encode($feedData);
-    
-//     echo '{"feedData":'.$feedData.'}';
-
-// }
-
-// function feedDelete(){
-//     require 'config.php';
-//     $json = json_decode(file_get_contents('php://input'), true);
-//     $user_id=$json['user_id'];
-//     $feed_id=$json['feed_id'];
-         
-//     $query = "Delete FROM feed WHERE user_id=$user_id AND feed_id=$feed_id";
-//     $result = $db->query($query);
-//     if($result)       
-//     {        
-//         echo '{"success":"Feed deleted"}';
-//     } else{
-     
-//         echo '{"error":"Delete error"}';
-//     }
-       
-       
-    
-// }
-
+echo json_encode($json_array);
 ?>

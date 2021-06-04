@@ -3,7 +3,6 @@ import React from "react";
 const Toaster = React.lazy(() =>
   import("./views/notifications/toaster/Toaster")
 );
-const Tables = React.lazy(() => import("./views/base/tables/Tables"));
 
 const Breadcrumbs = React.lazy(() =>
   import("./views/base/breadcrumbs/Breadcrumbs")
@@ -21,9 +20,6 @@ const Tooltips = React.lazy(() => import("./views/base/tooltips/Tooltips"));
 const BrandButtons = React.lazy(() =>
   import("./views/buttons/brand-buttons/BrandButtons")
 );
-const ButtonGroups = React.lazy(() =>
-  import("./views/buttons/button-groups/ButtonGroups")
-);
 const Buttons = React.lazy(() => import("./views/buttons/buttons/Buttons"));
 const Dashboard = React.lazy(() => import("./views/dashboard/Dashboard"));
 const CoreUIIcons = React.lazy(() =>
@@ -31,11 +27,7 @@ const CoreUIIcons = React.lazy(() =>
 );
 const Brands = React.lazy(() => import("./views/icons/brands/Brands"));
 const Alerts = React.lazy(() => import("./views/notifications/alerts/Alerts"));
-const Badges = React.lazy(() => import("./views/notifications/badges/Badges"));
-const Modals = React.lazy(() => import("./views/notifications/modals/Modals"));
 const Colors = React.lazy(() => import("./views/theme/colors/Colors"));
-const Users = React.lazy(() => import("./views/users/Users"));
-const User = React.lazy(() => import("./views/users/User"));
 
 const MainPage = React.lazy(() => import("./views/home"));
 const Location = React.lazy(() => import("./views/maps/location"));
@@ -58,7 +50,6 @@ const routes = [
   { path: "/base/cards", name: "Cards", component: Cards },
   { path: "/base/paginations", name: "Paginations", component: Paginations },
   { path: "/base/progress-bar", name: "Progress Bar", component: ProgressBar },
-  { path: "/base/tables", name: "Tables", component: Tables },
   { path: "/base/tooltips", name: "Tooltips", component: Tooltips },
   { path: "/buttons", name: "Buttons", component: Buttons, exact: true },
   { path: "/buttons/buttons", name: "Buttons", component: Buttons },
@@ -87,11 +78,6 @@ const routes = [
   { path: "/credits/hardwares", name: "Hardwares", component: Hardwares },
 
   {
-    path: "/buttons/button-groups",
-    name: "Button Groups",
-    component: ButtonGroups,
-  },
-  {
     path: "/buttons/brand-buttons",
     name: "Brand Buttons",
     component: BrandButtons,
@@ -106,11 +92,7 @@ const routes = [
     exact: true,
   },
   { path: "/notifications/alerts", name: "Alerts", component: Alerts },
-  { path: "/notifications/badges", name: "Badges", component: Badges },
-  { path: "/notifications/modals", name: "Modals", component: Modals },
   { path: "/notifications/toaster", name: "Toaster", component: Toaster },
-  { path: "/users", exact: true, name: "Users", component: Users },
-  { path: "/users/:id", exact: true, name: "User Details", component: User },
 ];
 
 export default routes;

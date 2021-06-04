@@ -10,6 +10,7 @@ const _nav = [
     badge: {
       color: "info",
       text: "NEW",
+      shape: "pill",
     },
   },
   {
@@ -20,6 +21,7 @@ const _nav = [
     badge: {
       color: "info",
       text: "NEW",
+      shape: "pill",
     },
   },
   {
@@ -34,6 +36,7 @@ const _nav = [
     badge: {
       color: "info",
       text: "BETA",
+      shape: "pill",
     },
   },
   {
@@ -60,6 +63,7 @@ const _nav = [
     badge: {
       color: "warning",
       text: "PREVIEW",
+      shape: "pill",
     },
     addLinkClass: "c-disabled",
     disabled: true,
@@ -155,11 +159,6 @@ const _nav = [
       },
       {
         _tag: "CSidebarNavItem",
-        name: "Tables",
-        to: "/base/tables",
-      },
-      {
-        _tag: "CSidebarNavItem",
         name: "Tooltips",
         to: "/base/tooltips",
       },
@@ -180,11 +179,6 @@ const _nav = [
         _tag: "CSidebarNavItem",
         name: "Brand buttons",
         to: "/buttons/brand-buttons",
-      },
-      {
-        _tag: "CSidebarNavItem",
-        name: "Buttons groups",
-        to: "/buttons/button-groups",
       },
     ],
   },
@@ -223,16 +217,6 @@ const _nav = [
       },
       {
         _tag: "CSidebarNavItem",
-        name: "Badges",
-        to: "/notifications/badges",
-      },
-      {
-        _tag: "CSidebarNavItem",
-        name: "Modal",
-        to: "/notifications/modals",
-      },
-      {
-        _tag: "CSidebarNavItem",
         name: "Toaster",
         to: "/notifications/toaster",
       },
@@ -253,11 +237,6 @@ const _nav = [
     _children: [
       {
         _tag: "CSidebarNavItem",
-        name: "Login",
-        to: "/login",
-      },
-      {
-        _tag: "CSidebarNavItem",
         name: "Error 404",
         to: "/404",
       },
@@ -271,40 +250,6 @@ const _nav = [
   {
     _tag: "CSidebarNavDivider",
     className: "m-2",
-  },
-  {
-    _tag: "CSidebarNavTitle",
-    _children: ["Labels"],
-  },
-  {
-    _tag: "CSidebarNavItem",
-    name: "Label danger",
-    to: "",
-    icon: {
-      name: "cil-star",
-      className: "text-danger",
-    },
-    label: true,
-  },
-  {
-    _tag: "CSidebarNavItem",
-    name: "Label info",
-    to: "",
-    icon: {
-      name: "cil-star",
-      className: "text-info",
-    },
-    label: true,
-  },
-  {
-    _tag: "CSidebarNavItem",
-    name: "Label warning",
-    to: "",
-    icon: {
-      name: "cil-star",
-      className: "text-warning",
-    },
-    label: true,
   },
   {
     _tag: "CSidebarNavDivider",

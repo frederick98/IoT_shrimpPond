@@ -77,18 +77,6 @@ const Features = () => {
             alt="..."
           />
         </div>
-        <div class="col-5">
-          <h3 class="font-weight-light">Easy-Login and Registrations</h3>
-          <p class="text-justify">
-            Log into the application easily using your username and password.
-            User can access it everywhere as long as you write the correct
-            address.
-          </p>
-          <p class="text-justify">
-            If you don't have an ID, feel free to contact us to make you a new
-            ID and password.
-          </p>
-        </div>
       </div>
       <div class="my-3"></div>
       <div class="row">

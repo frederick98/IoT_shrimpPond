@@ -1,4 +1,4 @@
 <?php
-	$db = new mysqli("localhost","eric","Solaiman1","SkripsiEric");
-	if(!$db) die("database connection error");
+	$connection = new mysqli("localhost","eric","Solaiman1","SkripsiEric");
+	if(!$connection) die("database connection error");
 ?>

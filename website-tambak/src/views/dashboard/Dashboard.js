@@ -1,14 +1,10 @@
 import React, { lazy } from "react";
 import {
-  CBadge,
-  CButton,
-  CButtonGroup,
   CCard,
   CCardBody,
   CCardFooter,
   CCardHeader,
   CCol,
-  CProgress,
   CRow,
   CWidgetDropdown,
   CDropdown,
@@ -94,32 +90,6 @@ const Dashboard = () => {
         <CCardHeader>FAQs</CCardHeader>
         <CCardBody className="mb-4 align-items-center mt-3">
           <CRow>
-            {/* <CCol>
-              <CWidgetDropdown
-                color="gradient-primary"
-                header="Node Status Checking"
-                text="Check Node Online/Offline Status before monitoring begin"
-                footerSlot={
-                  <CWidgetProgressIcon
-                    header="2"
-                    text="Total Node"
-                    color="gradient-info"
-                    inverse
-                  >
-                    <CIcon name="cil-fork" height="36" />
-                  </CWidgetProgressIcon>
-                }
-              >
-                <CDropdown>
-                  <CDropdownToggle color="transparent">
-                    <CIcon name="cil-bolt" />
-                  </CDropdownToggle>
-                  <CDropdownMenu className="pt-0" placement="bottom-end">
-                    <CDropdownItem>Start</CDropdownItem>
-                  </CDropdownMenu>
-                </CDropdown>
-              </CWidgetDropdown>
-            </CCol> */}
             <CCol>
               <CWidgetDropdown
                 color="gradient-primary"

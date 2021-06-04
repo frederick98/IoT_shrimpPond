@@ -1,50 +1,34 @@
 import React, { Component } from "react";
 import { Link, Redirect } from "react-router-dom";
-import {
-  CButton,
-  CCard,
-  CCardBody,
-  CCardGroup,
-  CCol,
-  CContainer,
-  CForm,
-  CInput,
-  CInputGroup,
-  CInputGroupPrepend,
-  CInputGroupText,
-  CRow,
-} from "@coreui/react";
-import { PostData } from "../services/PostData";
+import { CButton, CCol, CContainer, CRow } from "@coreui/react";
+//import { PostData } from "../services/PostData";
 
 class MainPage extends Component {
   constructor() {
     super();
     this.state = {
-      username: "",
-      password: "",
+      // username: "",
+      // password: "",
       redirectToReferrer: false,
     };
-    this.login = this.login.bind(this);
-    this.onChange = this.onChange.bind(this);
+    //this.login = this.login.bind(this);
+    //this.onChange = this.onChange.bind(this);
   }
-  login() {
-    if (this.state.username && this.state.password) {
-      PostData("login", this.state).then((result) => {
-        let responseJson = result;
-        if (responseJson.userData) {
-          sessionStorage.setItem("userData", JSON.stringify(responseJson));
-          this.setState({ redirectToReferrer: true });
-        } else alert(result.error);
-      });
-    } else alert("Please fill Username or Password!");
-  }
+  // login() {
+  //   if (this.state.username && this.state.password) {
+  //     PostData("login", this.state).then((result) => {
+  //       let responseJson = result;
+  //       if (responseJson.userData) {
+  //         sessionStorage.setItem("userData", JSON.stringify(responseJson));
+  //         this.setState({ redirectToReferrer: true });
+  //       } else alert(result.error);
+  //     });
+  //   } else alert("Please fill Username or Password!");
+  // }
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
   render() {
-    if (this.state.redirectToReferrer) {
-      return <Redirect to={"/home"} />;
-    }
     if (sessionStorage.getItem("userData")) {
       return <Redirect to={"/dashboard/Dashboard"} />;
     }

@@ -1,4 +1,4 @@
-import React, { lazy } from "react";
+import React, { useState } from "react";
 import {
   CBadge,
   CButton,
@@ -11,12 +11,18 @@ import {
   CProgress,
   CRow,
   CCallout,
+  CModal,
+  CModalBody,
+  CModalFooter,
+  CModalHeader,
+  CModalTitle,
 } from "@coreui/react";
-import CIcon from "@coreui/icons-react";
 
 import MainChartExample from "../charts/MainChartExample.js";
 
 const DataGraphics = () => {
+  const [warning, setWarning] = React.useState(true);
+
   return (
     <>
       <CCard>
@@ -104,6 +110,30 @@ const DataGraphics = () => {
           </CRow>
         </CCardFooter>{" "}
       </CCard>
+
+      <CModal
+        show={warning}
+        onClose={() => setWarning(!warning)}
+        color="warning"
+      >
+        <CModalHeader closeButton>
+          <CModalTitle>
+            <strong>Feature is not available</strong>
+          </CModalTitle>
+        </CModalHeader>
+        <CModalBody>
+          This Page is not available in this theses. It's just a 'preview -
+          only' feature to show what future development would look like.
+          <br />
+          <br />
+          Send me more suggestion so i can develop more helping pages!
+        </CModalBody>
+        <CModalFooter>
+          <CButton color="danger" onClick={() => setWarning(!warning)}>
+            Okay :(
+          </CButton>
+        </CModalFooter>
+      </CModal>
 
       {/* <WidgetsBrand withCharts />
 
