@@ -52,15 +52,20 @@ sal = ""
 do = ""
 readTime = ""
 
+global nodeStatus
+testDataReceived = 0
+
 isRunning = True
 mainMenu = True
 isMonitoring = True
+timer = 0
 
 # showing menu for first-run only
 print("Welcome to Base Station v1.0")
 print("----------------------------")
 print("Please choose Menu Below:")
 print("1. Start Monitoring")
+print("2. Node Status Check")
 print("0. Shutdown Node & Base Station")
 print("----------------------------")
 menu = input("Insert Menu's Number: ")
@@ -74,6 +79,7 @@ def main():
     print("----------------------------")
     print("Please choose Menu Below:")
     print("1. Start Monitoring")
+    print("2. Node Status Check")
     print("0. Shutdown Node & Base Station")
     print("----------------------------")
 
@@ -83,7 +89,7 @@ method for splitting data received from arduino sensor node. Data received from
 arduino (format):
     "Node/temp/turb/pH/sal/do/nodeStatus/sensorStatus"
 which example is:
-    "N1/30.40/3.85/7.00/34.55/5.50"
+    "N1/30.40/3.85/7.00/34.55/5.50/Online/Monitoring"
 """
 def getNodeData(data):
     # initializing first
@@ -94,6 +100,8 @@ def getNodeData(data):
     sal = ""
     do = ""
     readTime = ""
+    nodeStat = ""
+    sensorStat = ""
     
     # splitting data
     splittedMessage = data.split("/")
@@ -106,11 +114,13 @@ def getNodeData(data):
         pH = splittedMessage[3]
         sal = splittedMessage[4]
         do = splittedMessage[5]
+        nodeStat = splittedMessage[6]
+        sensorStat = splittedMessage[7]
         readTime = datetime.datetime.now()
         
         readTime = readTime.strftime('%Y-%m-%d %H:%M:%S')
         #print("Read Time: ", readTime)
-    return node, temp, turb, pH, sal, do, readTime
+    return node, temp, turb, pH, sal, do, readTime, nodeStat, sensorStat
 
 
 """
@@ -160,6 +170,62 @@ def updateDB(data):
     cursor.close()
     db.close()
     
+
+"""
+method for getting arduino's node and sensor online status by splitting the
+message sent from the arduino
+"""
+def getArduinoStatus(data):
+    # initializing first
+    node = ""
+    temp = ""
+    turb = ""
+    pH = ""
+    sal = ""
+    do = ""
+    readTime = ""
+    nodeStat = ""
+    sensorStat = ""
+    
+    # splitting data
+    splittedMessage = data.split("/")
+    
+    # writing & formatting values 
+    if len(splittedMessage) > 1:
+        node = splittedMessage[0]
+        temp = splittedMessage[1]
+        turb = splittedMessage[2]
+        pH = splittedMessage[3]
+        sal = splittedMessage[4]
+        do = splittedMessage[5]
+        nodeStat = splittedMessage[6]
+        sensorStat = splittedMessage[7]
+        readTime = datetime.datetime.now()
+        
+        readTime = readTime.strftime('%Y-%m-%d %H:%M:%S')
+        #print("Read Time: ", readTime)
+    return node, readTime, nodeStat
+
+"""
+method which acts like a timer for counting until timeout
+"""
+def timerRun():
+    global nodeStatus
+    result = "Ping Sensor Node: "
+    
+    if(timer > 60):
+        print("Sensor Node Currently Offline.")
+        print("Check Node")
+        nodeStatus = false
+    return result
+
+"""
+this method resets the timer's counting to 0
+"""
+def timerReset():
+    global timer
+    timer = 0
+    
     
 """
 creating thread to run the apps and perform another task while it keeps reading 
@@ -200,6 +266,37 @@ while mainMenu:
                     future2 = executor.submit(updateDB, future.result())
                     print(future.result())
                     print("Data uploaded to DB")
+    elif(menu =="2"):
+        print("Requesting Node Status Check")
+        print("Loading...")
+        # send check request to arduino node
+        #serial.write(str.encode("check").strip())
+        
+        while(timer < 60):
+            message = serial.readline().decode("ascii").strip()
+            
+            # start timeout thread
+            with concurrent.futures.ThreadPoolExecutor() as executor:
+                timerRun()
+                timer += 1
+                future3 = executor.submit(getArduinoStatus, message)
+                
+                if future3.result() != None:
+                    print("Node Status Check completed.")
+                    print("Result: ", future3.result())
+                    print("Continue to Monitoring...")
+                    future4 = executor.submit(updateDB, future3. result())
+                    global nodeStatus
+                    nodeStatus = True
+                    testDataReceived += 1
+            
+            if (testDataReceived == 0):
+                print("Sensor Node is Not Responding/Offline. Please Check")
+            else:
+                print("Node Status Checking has finished")
+            timerReset()
+            testDataReceived = 0
+            main() 
     else:
         print("Wrong Menu, Apps is restarting...")
         exit()
@@ -208,9 +305,5 @@ while mainMenu:
     print(f'Menu Chosen: {menu}')
 
 
-"""
-method for getting arduino's node and sensor online status by splitting the
-message sent from the arduino
-"""
-#def getArduinoStatus():
-    
+
+

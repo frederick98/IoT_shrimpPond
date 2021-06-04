@@ -1,5 +1,6 @@
 export function PostData(type, userData) {
-  let BaseURL = "http://localhost/react-php/api/index.php";
+  let BaseURL =
+    "http://localhost/skrispi/IoT_shrimpPond/react-php/api/index.php";
   return new Promise((resolve, reject) => {
     fetch(BaseURL + "?tp=" + type, {
       method: "POST",

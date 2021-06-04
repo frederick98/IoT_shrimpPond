@@ -37,7 +37,7 @@ const TheFooter = () => {
           E-Mail
         </a>
       </div>
-      <div className="mfs-auto">
+      {/* <div className="mfs-auto">
         <span className="mr-1">Powered by</span>
         <a
           href="https://coreui.io/react"
@@ -46,7 +46,7 @@ const TheFooter = () => {
         >
           CoreUI for React
         </a>
-      </div>
+      </div> */}
     </CFooter>
   );
 };

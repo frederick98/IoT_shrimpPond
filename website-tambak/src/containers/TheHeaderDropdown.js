@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link, Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import {
   CBadge,
   CDropdown,
@@ -10,7 +10,6 @@ import {
 } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
 
-//const TheHeaderDropdown = () => {
 class TheHeaderDropdown extends Component {
   constructor(props) {
     super(props);
@@ -81,17 +80,13 @@ class TheHeaderDropdown extends Component {
           <CDropdownItem header tag="div" color="light" className="text-center">
             <strong>Settings</strong>
           </CDropdownItem>
-          <CDropdownItem>
+          {/* <CDropdownItem>
             <CIcon name="cil-user" className="mfe-2" />
             Profile
-          </CDropdownItem>
-          <CDropdownItem>
+          </CDropdownItem> */}
+          <CDropdownItem className="disabled">
             <CIcon name="cil-settings" className="mfe-2" />
             Settings
-          </CDropdownItem>
-          <CDropdownItem className="disabled">
-            <CIcon name="cil-credit-card" className="mfe-2" />
-            Payments
             <CBadge color="secondary" className="mfs-auto">
               BETA
             </CBadge>
@@ -110,7 +105,7 @@ class TheHeaderDropdown extends Component {
         </CDropdownItem> */}
           <CDropdownItem href="#" onClick={this.logout}>
             <CIcon name="cil-account-logout" className="mfe-2" />
-            Sign Out
+            Back to Main Page
           </CDropdownItem>
         </CDropdownMenu>
       </CDropdown>

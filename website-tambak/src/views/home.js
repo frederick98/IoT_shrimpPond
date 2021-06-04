@@ -14,7 +14,6 @@ import {
   CInputGroupText,
   CRow,
 } from "@coreui/react";
-import CIcon from "@coreui/icons-react";
 import { PostData } from "../services/PostData";
 
 class MainPage extends Component {
@@ -49,8 +48,6 @@ class MainPage extends Component {
     if (sessionStorage.getItem("userData")) {
       return <Redirect to={"/dashboard/Dashboard"} />;
     }
-
-    //const Login = () => {
     return (
       <div className="c-app c-default-layout flex-row align-items-center">
         <CContainer>
@@ -59,9 +56,17 @@ class MainPage extends Component {
               <h2>
                 WSN-Based Water Quality Monitoring Application for Shrimp Pond
               </h2>
-              <h5 className="py-4">2016730040 - Frederick</h5>
+              <h5 className="py-2">2016730040 - Frederick</h5>
+              <CButton
+                color="primary"
+                className="px-4"
+                href="/#/dashboard"
+                //onClick={this.login}
+              >
+                Login
+              </CButton>
             </CCol>
-            <CCol md="8">
+            {/* <CCol md="8">
               <CCardGroup>
                 <CCard className="p-4">
                   <CCardBody>
@@ -106,41 +111,12 @@ class MainPage extends Component {
                             Login
                           </CButton>
                         </CCol>
-                        <CCol xs="6" className="text-right">
-                          <CButton color="link" className="px-0">
-                            Forgot password?
-                          </CButton>
-                        </CCol>
                       </CRow>
                     </CForm>
                   </CCardBody>
                 </CCard>
-                <CCard
-                  className="text-white bg-primary py-5 d-md-down-none"
-                  style={{ width: "44%" }}
-                >
-                  <CCardBody className="text-center">
-                    <div>
-                      <h2>Register</h2>
-                      <p>
-                        Please register if you don't have an ID. We'll tell
-                        admin about this.
-                      </p>
-                      <Link to="/register">
-                        <CButton
-                          color="primary"
-                          className="mt-3"
-                          active
-                          tabIndex={-1}
-                        >
-                          Register Now!
-                        </CButton>
-                      </Link>
-                    </div>
-                  </CCardBody>
-                </CCard>
               </CCardGroup>
-            </CCol>
+            </CCol> */}
           </CRow>
         </CContainer>
       </div>

@@ -55,7 +55,7 @@ const _nav = [
   {
     _tag: "CSidebarNavItem",
     name: "Bug Report",
-    to: "",
+    //to: "/help/bugReport",
     icon: <CIcon name="cil-bug" customClasses="c-sidebar-nav-icon" />,
     badge: {
       color: "warning",
@@ -115,19 +115,6 @@ const _nav = [
   },
   {
     _tag: "CSidebarNavTitle",
-    _children: ["Template Starts Below"],
-  },
-  {
-    _tag: "CSidebarNavItem",
-    name: "Dashboard",
-    to: "/dashboard",
-    icon: <CIcon name="cil-speedometer" customClasses="c-sidebar-nav-icon" />,
-    badge: {
-      color: "info",
-    },
-  },
-  {
-    _tag: "CSidebarNavTitle",
     _children: ["Theme"],
   },
   {
@@ -135,12 +122,6 @@ const _nav = [
     name: "Colors",
     to: "/theme/colors",
     icon: "cil-drop",
-  },
-  {
-    _tag: "CSidebarNavItem",
-    name: "Typography",
-    to: "/theme/typography",
-    icon: "cil-pencil",
   },
   {
     _tag: "CSidebarNavTitle",
@@ -164,48 +145,8 @@ const _nav = [
       },
       {
         _tag: "CSidebarNavItem",
-        name: "Carousel",
-        to: "/base/carousels",
-      },
-      {
-        _tag: "CSidebarNavItem",
-        name: "Collapse",
-        to: "/base/collapses",
-      },
-      {
-        _tag: "CSidebarNavItem",
-        name: "Forms",
-        to: "/base/forms",
-      },
-      {
-        _tag: "CSidebarNavItem",
-        name: "Jumbotron",
-        to: "/base/jumbotrons",
-      },
-      {
-        _tag: "CSidebarNavItem",
-        name: "List group",
-        to: "/base/list-groups",
-      },
-      {
-        _tag: "CSidebarNavItem",
-        name: "Navs",
-        to: "/base/navs",
-      },
-      {
-        _tag: "CSidebarNavItem",
-        name: "Navbars",
-        to: "/base/navbars",
-      },
-      {
-        _tag: "CSidebarNavItem",
         name: "Pagination",
         to: "/base/paginations",
-      },
-      {
-        _tag: "CSidebarNavItem",
-        name: "Popovers",
-        to: "/base/popovers",
       },
       {
         _tag: "CSidebarNavItem",
@@ -214,18 +155,8 @@ const _nav = [
       },
       {
         _tag: "CSidebarNavItem",
-        name: "Switches",
-        to: "/base/switches",
-      },
-      {
-        _tag: "CSidebarNavItem",
         name: "Tables",
         to: "/base/tables",
-      },
-      {
-        _tag: "CSidebarNavItem",
-        name: "Tabs",
-        to: "/base/tabs",
       },
       {
         _tag: "CSidebarNavItem",
@@ -255,18 +186,7 @@ const _nav = [
         name: "Buttons groups",
         to: "/buttons/button-groups",
       },
-      {
-        _tag: "CSidebarNavItem",
-        name: "Dropdowns",
-        to: "/buttons/button-dropdowns",
-      },
     ],
-  },
-  {
-    _tag: "CSidebarNavItem",
-    name: "Charts",
-    to: "/charts",
-    icon: "cil-chart-pie",
   },
   {
     _tag: "CSidebarNavDropdown",
@@ -282,11 +202,6 @@ const _nav = [
           color: "success",
           text: "NEW",
         },
-      },
-      {
-        _tag: "CSidebarNavItem",
-        name: "CoreUI Flags",
-        to: "/icons/flags",
       },
       {
         _tag: "CSidebarNavItem",
@@ -324,16 +239,6 @@ const _nav = [
     ],
   },
   {
-    _tag: "CSidebarNavItem",
-    name: "Widgets",
-    to: "/widgets",
-    icon: "cil-calculator",
-    badge: {
-      color: "info",
-      text: "NEW",
-    },
-  },
-  {
     _tag: "CSidebarNavDivider",
   },
   {
@@ -353,11 +258,6 @@ const _nav = [
       },
       {
         _tag: "CSidebarNavItem",
-        name: "Register",
-        to: "/register",
-      },
-      {
-        _tag: "CSidebarNavItem",
         name: "Error 404",
         to: "/404",
       },
@@ -367,17 +267,6 @@ const _nav = [
         to: "/500",
       },
     ],
-  },
-  {
-    _tag: "CSidebarNavItem",
-    name: "Disabled",
-    icon: "cil-ban",
-    badge: {
-      color: "secondary",
-      text: "NEW",
-    },
-    addLinkClass: "c-disabled",
-    disabled: true,
   },
   {
     _tag: "CSidebarNavDivider",
