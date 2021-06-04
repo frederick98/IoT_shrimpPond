@@ -53,6 +53,8 @@ class Monitoring extends Component {
     PostData("node1", "").then((result) => {
       let response = result;
 
+      while (response) {}
+
       //   while ($row = mysqli_fetch_array($result)){
       //     echo "<tr>";
       //     echo "<td>" . $row['waktuPengamatan'] . "</td>";

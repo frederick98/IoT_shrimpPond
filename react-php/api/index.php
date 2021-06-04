@@ -38,7 +38,7 @@ function node1(){
     require 'config.php';
     $json = json_decode(fil_get_contents('php://input'), true);
 
-    $sql = "SELECT * FROM Pengamatan WHERE idNode=1 ORDER BY waktuPengamatan DESC LIMIT 5";
+    $sql = "SELECT * FROM Pengamatan WHERE idNode=1 ORDER BY waktuPengamatan DESC LIMIT 10";
     $result = $db->query($sql);
 
     $nodeInfo = mysqli_fetch_all($result, MYSQLI_ASSOC);
