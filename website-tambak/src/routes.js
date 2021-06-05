@@ -4,11 +4,6 @@ const Toaster = React.lazy(() =>
   import("./views/notifications/toaster/Toaster")
 );
 
-const Breadcrumbs = React.lazy(() =>
-  import("./views/base/breadcrumbs/Breadcrumbs")
-);
-const Cards = React.lazy(() => import("./views/base/cards/Cards"));
-
 const Paginations = React.lazy(() =>
   import("./views/base/paginations/Pagnations")
 );
@@ -27,7 +22,6 @@ const CoreUIIcons = React.lazy(() =>
 );
 const Brands = React.lazy(() => import("./views/icons/brands/Brands"));
 const Alerts = React.lazy(() => import("./views/notifications/alerts/Alerts"));
-const Colors = React.lazy(() => import("./views/theme/colors/Colors"));
 
 const MainPage = React.lazy(() => import("./views/home"));
 const Location = React.lazy(() => import("./views/maps/location"));
@@ -43,11 +37,6 @@ const AboutUs = React.lazy(() => import("./views/authors/aboutUs"));
 const routes = [
   { path: "/", exact: true, name: "Home" },
   { path: "/dashboard", name: "Dashboard", component: Dashboard },
-  { path: "/theme", name: "Theme", component: Colors, exact: true },
-  { path: "/theme/colors", name: "Colors", component: Colors },
-  { path: "/base", name: "Base", component: Cards, exact: true },
-  { path: "/base/breadcrumbs", name: "Breadcrumbs", component: Breadcrumbs },
-  { path: "/base/cards", name: "Cards", component: Cards },
   { path: "/base/paginations", name: "Paginations", component: Paginations },
   { path: "/base/progress-bar", name: "Progress Bar", component: ProgressBar },
   { path: "/base/tooltips", name: "Tooltips", component: Tooltips },

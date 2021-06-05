@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Link, Redirect } from "react-router-dom";
 import { CButton, CCol, CContainer, CRow } from "@coreui/react";
-//import { PostData } from "../services/PostData";
 
 class MainPage extends Component {
   constructor() {

@@ -26,7 +26,7 @@ const Features = () => {
             real-time data directly from the sensor's reading.{" "}
             <strong>
               Please be warned that this feature still in development, and might
-              not showing accurate data.
+              not showing accurate data and/or implemented correctly.
             </strong>
           </p>
         </div>
@@ -66,16 +66,6 @@ const Features = () => {
             we have a feature that allows user to check all the node status, and
             reports to user if something is not right.
           </p>
-        </div>
-      </div>
-      <div class="my-3"></div>
-      <div class="row">
-        <div class="col-7">
-          <img
-            class="img-fluid rounded mb-4 mb-lg-0"
-            src="https://via.placeholder.com/600x400"
-            alt="..."
-          />
         </div>
       </div>
       <div class="my-3"></div>
