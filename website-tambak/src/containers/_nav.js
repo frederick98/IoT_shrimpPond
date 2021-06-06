@@ -137,11 +137,6 @@ const _nav = [
         name: "Progress",
         to: "/base/progress-bar",
       },
-      {
-        _tag: "CSidebarNavItem",
-        name: "Tooltips",
-        to: "/base/tooltips",
-      },
     ],
   },
   {

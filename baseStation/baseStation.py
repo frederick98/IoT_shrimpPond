@@ -44,15 +44,15 @@ serial = serial.Serial(
 #)
 
 # Any variable initializations
-node = ""
-temp = ""
-turb = ""
-pH = ""
-sal = ""
-do = ""
-readTime = ""
+# node = ""
+# temp = ""
+# turb = ""
+# pH = ""
+# sal = ""
+# do = ""
+# readTime = ""
 
-global nodeStatus
+global nodeStat
 testDataReceived = 0
 
 isRunning = True
@@ -143,7 +143,9 @@ def updateDB(data):
     turb = data[2]
     pH = data[3]
     sal = data[4]
-    do = data[5]        
+    do = data[5]      
+    nodeStat = data[7]
+    sensorStat = data[8]  
     readTime = datetime.datetime.now()
     
     # Formatting values
@@ -153,22 +155,33 @@ def updateDB(data):
     pH = float(pH)
     sal = float(sal)
     do = float(do)
+    #nodeStat = String(nodeStat)
+    #sensorStat = splittedMessage[7]
     readTime = readTime.strftime('%Y-%m-%d %H:%M:%S')
         
     # initializing cursor
     cursor = db.cursor(buffered = True)
     
-    # creating query
-    query = ("INSERT INTO Pengamatan(idTambak, idNode, waktuPengamatan, temperature, turbidity, pH, salinity, DO) VALUES (%s, %s , %s, %s, %s, %s, %s, %s)")
-    values = (1, node, readTime, temp, turb, pH, sal, do)
+    # creating insert monitor data query
+    query = ("INSERT INTO Pengamatan(idTambak, idNode, waktuPengamatan, nodeStatus, monitoringStatus, temperature, turbidity, pH, salinity, DO) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)")
+    values = (1, node, readTime, nodeStat, sensorStat, temp, turb, pH, sal, do)
     
     # executing query
     cursor.execute(query, values)
+    
+    # creating update node query
+    query2 = ("UPDATE Node SET nodeStat=%s, sensorStat=%s, waktuNode=%s WHERE idNode=%s")
+    values2 = (nodeStat, sensorStat, waktuNode, node)
+
+    # executing query
+    cursor.execute(query2, values2)
     
     # close cursor & DB to save resources
     db.commit()
     cursor.close()
     db.close()
+    
+    print("Data uploaded to DB")
     
 
 """
@@ -178,14 +191,14 @@ message sent from the arduino
 def getArduinoStatus(data):
     # initializing first
     node = ""
-    temp = ""
-    turb = ""
-    pH = ""
-    sal = ""
-    do = ""
+    #temp = ""
+    #turb = ""
+    #pH = ""
+    #sal = ""
+    #do = ""
     readTime = ""
     nodeStat = ""
-    sensorStat = ""
+    #sensorStat = ""
     
     # splitting data
     splittedMessage = data.split("/")
@@ -198,8 +211,8 @@ def getArduinoStatus(data):
         pH = splittedMessage[3]
         sal = splittedMessage[4]
         do = splittedMessage[5]
-        nodeStat = splittedMessage[6]
-        sensorStat = splittedMessage[7]
+        nodeStat = splittedMessage[7]
+        sensorStat = splittedMessage[8]
         readTime = datetime.datetime.now()
         
         readTime = readTime.strftime('%Y-%m-%d %H:%M:%S')
@@ -210,13 +223,13 @@ def getArduinoStatus(data):
 method which acts like a timer for counting until timeout
 """
 def timerRun():
-    global nodeStatus
+    global nodeStat
     result = "Ping Sensor Node: "
     
-    if(timer > 60):
+    if(timer > 30):
         print("Sensor Node Currently Offline.")
         print("Check Node")
-        nodeStatus = false
+        nodeStat = false
     return result
 
 """
@@ -254,7 +267,7 @@ while mainMenu:
         # apps is running
         print("Monitoring Started...")
         print("Received Data: ")
-        print("Node ID / Temperature / Turbidity / pH Stat / Salinity / DO Stat / Date & Time Received")
+        print("Node ID / Temperature / Turbidity / pH Stat / Salinity / DO Stat / Date & Time Received / Node Status / Monitoring Status")
         while isRunning:
             # get data from arduino
             decoded = serial.readline().decode("ascii").strip()
@@ -265,14 +278,13 @@ while mainMenu:
                 if future.result() != None:
                     future2 = executor.submit(updateDB, future.result())
                     print(future.result())
-                    print("Data uploaded to DB")
     elif(menu =="2"):
         print("Requesting Node Status Check")
         print("Loading...")
         # send check request to arduino node
         #serial.write(str.encode("check").strip())
         
-        while(timer < 60):
+        while(timer < 30):
             message = serial.readline().decode("ascii").strip()
             
             # start timeout thread
@@ -286,24 +298,21 @@ while mainMenu:
                     print("Result: ", future3.result())
                     print("Continue to Monitoring...")
                     future4 = executor.submit(updateDB, future3. result())
-                    global nodeStatus
-                    nodeStatus = True
+                    global nodeStat
+                    nodeStat = True
                     testDataReceived += 1
             
-            if (testDataReceived == 0):
-                print("Sensor Node is Not Responding/Offline. Please Check")
-            else:
-                print("Node Status Checking has finished")
-            timerReset()
-            testDataReceived = 0
-            main() 
+        if (testDataReceived == 0):
+            print("Sensor Node is Not Responding/Offline. Please Check")
+        else:
+            print("Node Status Checking has finished")
+        timerReset()
+        testDataReceived = 0
+        main() 
     else:
         print("Wrong Menu, Apps is restarting...")
         exit()
         
     menu = input("Insert Menu's Number: ")
     print(f'Menu Chosen: {menu}')
-
-
-
 

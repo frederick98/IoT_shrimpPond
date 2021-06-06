@@ -1,36 +1,31 @@
 import React, { Component } from "react";
 import { CCard, CCardBody, CCardHeader, CCol, CRow } from "@coreui/react";
-import PostData from "../../services/PostData";
+import NodeData from "../../services/nodeData";
 
 class Monitoring extends Component {
   constructor() {
     super();
-    // this.state = {
-    //   username: "",
-    //   password: "",
-    //   redirectToReferrer: false,
-    // };
-    // this.login = this.login.bind(this);
-    //this.onChange = this.onChange.bind(this);
   }
 
-  // login() {
-  //   if (this.state.username && this.state.password) {
-  //     PostData("login", this.state).then((result) => {
-  //       let responseJson = result;
-  //       if (responseJson.userData) {
-  //         sessionStorage.setItem("userData", JSON.stringify(responseJson));
-  //         this.setState({ redirectToReferrer: true });
-  //       } else alert(result.error);
-  //     });
-  //   } else alert("Please fill Username or Password!");
-  // }
+  state = { seconds: 1 };
+
+  componentDidMount() {
+    //this.updateTimer = setInterval(() => this.loadNewData(), 10000);
+
+    this.timer = setInterval(() => {
+      this.setState({ seconds: this.state.seconds + 1 });
+    }, 10000);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.timer);
+  }
 
   render() {
     return (
       <>
         {/* <div className="container">
-          <PostData />
+          <NodeData />
         </div> */}
         <CRow>
           <CCol>
@@ -38,7 +33,7 @@ class Monitoring extends Component {
               <CCardHeader>Arduino Sensor Node 1</CCardHeader>
               <CCardBody>
                 <div>
-                  <PostData />
+                  <NodeData idNode="node1" />
                 </div>
               </CCardBody>
             </CCard>
@@ -49,26 +44,9 @@ class Monitoring extends Component {
             <CCard>
               <CCardHeader>Arduino Sensor Node 2</CCardHeader>
               <CCardBody>
-                {/* <CDataTable
-                  items={usersData}
-                  fields={headers}
-                  dark
-                  hover
-                  striped
-                  bordered
-                  size="sm"
-                  itemsPerPage={5}
-                  pagination
-                  scopedSlots={{
-                    status: (item) => (
-                      <td>
-                        <CBadge color={getBadge(item.status)}>
-                          {item.status}
-                        </CBadge>
-                      </td>
-                    ),
-                  }}
-                /> */}
+                <div>
+                  <NodeData idNode="node2" />
+                </div>
               </CCardBody>
             </CCard>
           </CCol>

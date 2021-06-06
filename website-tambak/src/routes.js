@@ -11,7 +11,6 @@ const ProgressBar = React.lazy(() =>
   import("./views/base/progress-bar/ProgressBar")
 );
 
-const Tooltips = React.lazy(() => import("./views/base/tooltips/Tooltips"));
 const BrandButtons = React.lazy(() =>
   import("./views/buttons/brand-buttons/BrandButtons")
 );
@@ -39,7 +38,6 @@ const routes = [
   { path: "/dashboard", name: "Dashboard", component: Dashboard },
   { path: "/base/paginations", name: "Paginations", component: Paginations },
   { path: "/base/progress-bar", name: "Progress Bar", component: ProgressBar },
-  { path: "/base/tooltips", name: "Tooltips", component: Tooltips },
   { path: "/buttons", name: "Buttons", component: Buttons, exact: true },
   { path: "/buttons/buttons", name: "Buttons", component: Buttons },
 

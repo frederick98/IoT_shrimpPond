@@ -27,19 +27,12 @@
     //     }
     //     echo "You have CORS!";
     // }
-
-    require 'config.php';
-
-    $sql = "SELECT * FROM Pengamatan WHERE idNode=1 ORDER BY waktuPengamatan DESC LIMIT 10";
-    $result = mysqli_query($connection, $sql);
-
-    $json_array = array();
-    while($row = mysqli_fetch_assoc($result)){
-        $json_array[] = $row;
-    }
-
-    echo json_encode($json_array);
-
+    
+     $type = $_GET['type'];
+    if($type == 'node1') node1();
+    elseif($type == 'node2')node2();
+    elseif($type == 'status')status()
+;
     function node1(){
         require 'config.php';
 
@@ -58,6 +51,20 @@
         require 'config.php';
 
         $sql = "SELECT * FROM Pengamatan WHERE idNode=2 ORDER BY waktuPengamatan DESC LIMIT 10";
+        $result = mysqli_query($connection, $sql);
+
+        $json_array = array();
+        while($row = mysqli_fetch_assoc($result)){
+            $json_array[] = $row;
+        }
+
+        echo json_encode($json_array);
+    }
+
+    function status(){
+        require 'config.php';
+
+        $sql = "SELECT DISTINCT Pengamatan.idTambak, Node.idNode, Node.waktuNode, Node.nodeStat, Node.sensorStat FROM Node INNER JOIN Pengamatan ON Pengamatan.idNode = Node.idNode";
         $result = mysqli_query($connection, $sql);
 
         $json_array = array();

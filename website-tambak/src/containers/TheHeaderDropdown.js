@@ -42,10 +42,11 @@ class TheHeaderDropdown extends Component {
         <CDropdownToggle className="c-header-nav-link" caret={false}>
           <div className="c-avatar">
             <CImg
-              src={"avatars/6.jpg"}
+              src={"avatars/1.jpeg"}
               className="c-avatar-img"
               alt="admin@bootstrapmaster.com"
             />
+            {/* <CIcon name="cil-user" className="mfe-2" /> */}
           </div>
         </CDropdownToggle>
         <CDropdownMenu className="pt-0" placement="bottom-end">
