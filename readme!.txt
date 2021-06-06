@@ -54,3 +54,4 @@ DB Setup:
 		insert into User(idUser, username, password, jabatan, namaUser, email)
 			values(1, 'admin', 'root', 1, 'Admin Utama', 'admin@mykolam.com')
 			
+

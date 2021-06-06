@@ -12,10 +12,10 @@ Dependencies are handled by **npm**.
 
 ```bash
 # clone the repo
-$ git clone https://github.com/coreui/coreui-free-react-admin-template.git my-project
+$ git clone https://github.com/frederick98/IoT_shrimpPond.git website-tambak
 
 # go into app's directory
-$ cd my-project
+$ cd website-tambak
 
 # install app's dependencies
 $ npm install
@@ -107,7 +107,7 @@ website-tambak
 
 Before opening an issue:
 
-- [Search for duplicate or closed issues](https://github.com/coreui/coreui-free-react-admin-template/issues?utf8=%E2%9C%93&q=is%3Aissue)
+- [Search for duplicate or closed issues](https://github.com/frederick98/IoT_shrimpPond/issues)
 - Prepare a [reduced test case](https://css-tricks.com/reduced-test-cases/) for any bugs
 
 When asking general "how to" questions:
@@ -122,5 +122,5 @@ When reporting a bug, include:
 
 When suggesting a feature, include:
 
-- As much detail as possible for what we should add and why it's important to CoreUI Admin Template
+- Detailed User Experience problems
 - Relevant links to prior art, screenshots, or live demos whenever possible
