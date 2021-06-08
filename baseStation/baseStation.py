@@ -52,6 +52,9 @@ serial = serial.Serial(
 # do = ""
 # readTime = ""
 
+ctNode1 = 0;
+ctNode2 = 0;
+
 global nodeStat
 testDataReceived = 0
 
@@ -89,7 +92,7 @@ method for splitting data received from arduino sensor node. Data received from
 arduino (format):
     "Node/temp/turb/pH/sal/do/nodeStatus/sensorStatus"
 which example is:
-    "N1/30.40/3.85/7.00/34.55/5.50/Online/Monitoring"
+    "N1/30.40/3.85/7.00/34.55/8.50/Online/Monitoring"
 """
 def getNodeData(data):
     # initializing first
@@ -120,6 +123,8 @@ def getNodeData(data):
         
         readTime = readTime.strftime('%Y-%m-%d %H:%M:%S')
         #print("Read Time: ", readTime)
+        
+        nodeCount(node);
     return node, temp, turb, pH, sal, do, readTime, nodeStat, sensorStat
 
 
@@ -154,7 +159,7 @@ def updateDB(data):
     turb = float(turb)
     pH = float(pH)
     sal = float(sal)
-    do = float(do)
+    do = float("{:.2f}".format(float(do) / 1000))
     #nodeStat = String(nodeStat)
     #sensorStat = splittedMessage[7]
     readTime = readTime.strftime('%Y-%m-%d %H:%M:%S')
@@ -171,10 +176,14 @@ def updateDB(data):
     
     # creating update node query
     query2 = ("UPDATE Node SET nodeStat=%s, sensorStat=%s, waktuNode=%s WHERE idNode=%s")
-    values2 = (nodeStat, sensorStat, waktuNode, node)
-
+    values2 = (nodeStat, sensorStat, readTime, node)
+    #print("values: ", values2)
+    
     # executing query
     cursor.execute(query2, values2)
+    
+    # update node data counter
+    nodeCount(node)
     
     # close cursor & DB to save resources
     db.commit()
@@ -182,6 +191,8 @@ def updateDB(data):
     db.close()
     
     print("Data uploaded to DB")
+    
+    updateNodeStat()
     
 
 """
@@ -219,6 +230,67 @@ def getArduinoStatus(data):
         #print("Read Time: ", readTime)
     return node, readTime, nodeStat
 
+
+"""
+defining the database used and sets the cursor for uploading data to that 
+database
+"""
+def updateNodeStat():
+    # DB & cursor initialization. If initialized outside the methods,
+    # inserting to DB will only run once, because its outside the thread
+    db = mysql.connector.connect(
+    host = 'localhost',
+    database = 'SkripsiEric',
+    user = 'eric',
+    password = 'Solaiman1'
+    )
+    cursor = db.cursor(buffered = True)
+    
+    # Decide which node offline
+    differ = 5
+    if(abs(ctNode1 - ctNode2) > differ):
+        readTime = datetime.datetime.now()
+        readTime = readTime.strftime('%Y-%m-%d %H:%M:%S')
+        query = ("UPDATE Node SET nodeStat=%s, sensorStat=%s, waktuNode=%s WHERE idNode=%s")
+        values = ('Offline', 'Not Monitoring', readTime, 1)
+    elif(abs(ctNode2 - ctNode1) > differ):
+        readTime = datetime.datetime.now()
+        readTime = readTime.strftime('%Y-%m-%d %H:%M:%S')
+        query = ("UPDATE Node SET nodeStat=%s, sensorStat=%s, waktuNode=%s WHERE idNode=%s")
+        values = ('Offline', 'Not Monitoring', readTime, 2)
+    elif((ctNode1==0) and (ctNode2==0)):
+        print("Both Blank")
+        readTime = datetime.datetime.now()
+        readTime = readTime.strftime('%Y-%m-%d %H:%M:%S')
+        query1 = ("UPDATE Node SET nodeStat=%s, sensorStat=%s, waktuNode=%s WHERE idNode=%s")
+        values1 = ('Offline', 'Not Monitoring', readTime, 1)
+        cursor.execute(query1, values1)
+        query = ("UPDATE Node SET nodeStat=%s, sensorStat=%s, waktuNode=%s WHERE idNode=%s")
+        values = ('Offline', 'Not Monitoring', readTime, 2)
+    
+    # executing query
+    cursor.execute(query, values)
+        
+    # close cursor & DB to save resources
+    db.commit()
+    cursor.close()
+    db.close()
+    
+    #print("Stat uploaded to DB")
+    
+    
+"""
+this method counts how many data sent from node
+"""
+def nodeCount(node):
+    if(node == 1):
+        ctNode1 += 1
+    elif(node == 2):
+        ctNode2 += 1
+    else:
+        print("Node not recognized!")
+
+
 """
 method which acts like a timer for counting until timeout
 """
@@ -231,6 +303,7 @@ def timerRun():
         print("Check Node")
         nodeStat = false
     return result
+
 
 """
 this method resets the timer's counting to 0
@@ -278,6 +351,10 @@ while mainMenu:
                 if future.result() != None:
                     future2 = executor.submit(updateDB, future.result())
                     print(future.result())
+                    if(future.result() == ('', '', '', '', '', '', '', '', '')):
+                        print('test')
+                        updateNodeStat()
+                        print("Node Status Updated")
     elif(menu =="2"):
         print("Requesting Node Status Check")
         print("Loading...")
