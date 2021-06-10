@@ -3,7 +3,7 @@ import { Redirect, Route, Switch } from "react-router-dom";
 import { CContainer, CFade } from "@coreui/react";
 
 // routes config
-import routes from "../routes";
+import routes from "../../routes";
 
 const loading = (
   <div className="pt-3 text-center">
@@ -11,7 +11,7 @@ const loading = (
   </div>
 );
 
-const TheContent = () => {
+const ATheContent = () => {
   return (
     <main className="c-main">
       <CContainer fluid>
@@ -42,4 +42,4 @@ const TheContent = () => {
   );
 };
 
-export default React.memo(TheContent);
+export default React.memo(ATheContent);

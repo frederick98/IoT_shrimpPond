@@ -15,7 +15,6 @@ const BrandButtons = React.lazy(() =>
   import("./views/buttons/brand-buttons/BrandButtons")
 );
 const Buttons = React.lazy(() => import("./views/buttons/buttons/Buttons"));
-const Dashboard = React.lazy(() => import("./views/dashboard/Dashboard"));
 const CoreUIIcons = React.lazy(() =>
   import("./views/icons/coreui-icons/CoreUIIcons")
 );
@@ -23,47 +22,84 @@ const Brands = React.lazy(() => import("./views/icons/brands/Brands"));
 const Alerts = React.lazy(() => import("./views/notifications/alerts/Alerts"));
 
 const MainPage = React.lazy(() => import("./views/home"));
-const Location = React.lazy(() => import("./views/maps/location"));
-const DataGraphics = React.lazy(() => import("./views/admins/dataGraphics"));
-const NodeCheck = React.lazy(() => import("./views/admins/nodeCheck"));
-const Monitoring = React.lazy(() => import("./views/admins/monitoring"));
-const BugReport = React.lazy(() => import("./views/help/bugReport"));
-const HowTo = React.lazy(() => import("./views/help/howTo"));
-const Features = React.lazy(() => import("./views/authors/features"));
-const Hardwares = React.lazy(() => import("./views/authors/hardwares"));
-const AboutUs = React.lazy(() => import("./views/authors/aboutUs"));
+
+// Admin-Specific Routes
+const ADashboard = React.lazy(() => import("./views/admins/aDashboard"));
+const ADataGraphics = React.lazy(() =>
+  import("./views/admins/monitoring/aDataGraphics")
+);
+const ANodeCheck = React.lazy(() =>
+  import("./views/admins/monitoring/aNodeCheck")
+);
+
+// User-Specific Routes
+const UDashboard = React.lazy(() => import("./views/users/uDashboard"));
+const UDataGraphics = React.lazy(() =>
+  import("./views/users/monitoring/uDataGraphics")
+);
+
+// All-User Routes
+const BMonitoring = React.lazy(() =>
+  import("./views/allUser/monitoring/bMonitoring")
+);
+const BBugReport = React.lazy(() => import("./views/allUser/help/bBugReport"));
+const BHowTo = React.lazy(() => import("./views/allUser/help/bHowTo"));
+const BLocation = React.lazy(() => import("./views/allUser/maps/bLocation"));
+const BFeatures = React.lazy(() => import("./views/allUser/about/bFeatures"));
+const BHardwares = React.lazy(() => import("./views/allUser/about/bHardwares"));
+const BAboutUs = React.lazy(() => import("./views/allUser/about/bAuthor"));
 
 const routes = [
+  // Admin-Specific Routes
+  { path: "/admins/ADashboard", name: "Dashboard", component: ADashboard },
+  {
+    path: "/admins/monitoring/ADataGraphics",
+    name: "Data Graphics Diagram",
+    component: ADataGraphics,
+  },
+  {
+    path: "/admins/monitoring/ANodeCheck",
+    name: "Node Status Checking",
+    component: ANodeCheck,
+  },
+
   { path: "/", exact: true, name: "Home" },
-  { path: "/dashboard", name: "Dashboard", component: Dashboard },
+
+  { path: "/mainPage", name: "Main", component: MainPage },
+
+  // User-Specific Routes
+  { path: "/users/UDashboard", name: "Dashboard", component: UDashboard },
+  {
+    path: "/users/monitoring/UDataGraphics",
+    name: "Data Graphics Diagram",
+    component: UDataGraphics,
+  },
+
+  // All-User Routes
+  {
+    path: "/allUser/monitoring/monitoring",
+    name: "Monitoring",
+    component: BMonitoring,
+  },
+  {
+    path: "/allUser/help/bugReport",
+    name: "Bug Report",
+    component: BBugReport,
+  },
+  { path: "/allUser/help/howTo", name: "How-To-Use", component: BHowTo },
+  { path: "/allUser/location", name: "Pond Location", component: BLocation },
+  { path: "/allUser/about/authors", name: "Author", component: BAboutUs },
+  { path: "/allUser/about/features", name: "Features", component: BFeatures },
+  {
+    path: "/allUser/about/hardwares",
+    name: "Hardwares",
+    component: BHardwares,
+  },
+
   { path: "/base/paginations", name: "Paginations", component: Paginations },
   { path: "/base/progress-bar", name: "Progress Bar", component: ProgressBar },
   { path: "/buttons", name: "Buttons", component: Buttons, exact: true },
   { path: "/buttons/buttons", name: "Buttons", component: Buttons },
-
-  { path: "/mainPage", name: "Main", component: MainPage },
-  { path: "/location", name: "Pond Location", component: Location },
-  {
-    path: "/admins/dataGraphics",
-    name: "Data Graphics Diagram",
-    component: DataGraphics,
-  },
-  {
-    path: "/admins/nodeCheck",
-    name: "Node Status Checking",
-    component: NodeCheck,
-  },
-  {
-    path: "/admins/monitoring",
-    name: "Monitoring",
-    component: Monitoring,
-  },
-  { path: "/help/bugReport", name: "Bug Report", component: BugReport },
-  { path: "/help/howTo", name: "How-To-Use", component: HowTo },
-  { path: "/credits/aboutUs", name: "Author", component: AboutUs },
-  { path: "/credits/features", name: "Features", component: Features },
-  { path: "/credits/hardwares", name: "Hardwares", component: Hardwares },
-
   {
     path: "/buttons/brand-buttons",
     name: "Brand Buttons",

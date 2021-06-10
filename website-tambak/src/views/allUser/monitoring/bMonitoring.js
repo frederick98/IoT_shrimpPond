@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { CCard, CCardBody, CCardHeader, CCol, CRow } from "@coreui/react";
-import NodeData from "../../services/nodeData";
+import NodeData from "../../../services/nodeData";
 
 class Monitoring extends Component {
   constructor() {

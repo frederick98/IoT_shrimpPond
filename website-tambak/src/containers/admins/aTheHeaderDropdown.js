@@ -10,7 +10,7 @@ import {
 } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
 
-class TheHeaderDropdown extends Component {
+class ATheHeaderDropdown extends Component {
   constructor(props) {
     super(props);
 
@@ -106,11 +106,11 @@ class TheHeaderDropdown extends Component {
         </CDropdownItem> */}
           <CDropdownItem href="#" onClick={this.logout}>
             <CIcon name="cil-account-logout" className="mfe-2" />
-            Back to Main Page
+            Log Out
           </CDropdownItem>
         </CDropdownMenu>
       </CDropdown>
     );
   }
 }
-export default TheHeaderDropdown;
+export default ATheHeaderDropdown;

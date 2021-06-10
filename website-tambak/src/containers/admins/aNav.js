@@ -1,11 +1,11 @@
 import React from "react";
 import CIcon from "@coreui/icons-react";
 
-const _nav = [
+const aNav = [
   {
     _tag: "CSidebarNavItem",
     name: "Dashboard",
-    to: "/dashboard",
+    to: "/admins/ADashboard",
     icon: <CIcon name="cil-speedometer" customClasses="c-sidebar-nav-icon" />,
     badge: {
       color: "info",
@@ -16,7 +16,7 @@ const _nav = [
   {
     _tag: "CSidebarNavItem",
     name: "Your Pond Location",
-    to: "/location",
+    to: "/allUser/location",
     icon: <CIcon name="cil-location-pin" customClasses="c-sidebar-nav-icon" />,
     badge: {
       color: "info",
@@ -31,7 +31,7 @@ const _nav = [
   {
     _tag: "CSidebarNavItem",
     name: "Data Graphics Diagram",
-    to: "/admins/dataGraphics",
+    to: "/admins/monitoring/ADataGraphics",
     icon: "cil-graph",
     badge: {
       color: "info",
@@ -42,13 +42,13 @@ const _nav = [
   {
     _tag: "CSidebarNavItem",
     name: "Node Status Checking",
-    to: "/admins/nodeCheck",
+    to: "/admins/monitoring/ANodeCheck",
     icon: "cil-check-circle",
   },
   {
     _tag: "CSidebarNavItem",
     name: "Monitoring",
-    to: "/admins/monitoring",
+    to: "/allUser/monitoring/monitoring",
     icon: <CIcon name="cil-tv" customClasses="c-sidebar-nav-icon" />,
   },
   {
@@ -58,7 +58,7 @@ const _nav = [
   {
     _tag: "CSidebarNavItem",
     name: "Bug Report",
-    //to: "/help/bugReport",
+    //to: "/allUser/help/bugReport",
     icon: <CIcon name="cil-bug" customClasses="c-sidebar-nav-icon" />,
     badge: {
       color: "warning",
@@ -71,7 +71,7 @@ const _nav = [
   {
     _tag: "CSidebarNavItem",
     name: "How-To-Use",
-    to: "/help/howTo",
+    to: "/allUser/help/howTo",
     icon: "cil-list-numbered",
   },
   {
@@ -81,19 +81,19 @@ const _nav = [
   {
     _tag: "CSidebarNavItem",
     name: "Application Features",
-    to: "/credits/features",
+    to: "/allUser/about/features",
     icon: "cil-pin",
   },
   {
     _tag: "CSidebarNavItem",
     name: "Hardwares",
-    to: "/credits/hardwares",
+    to: "/allUser/about/hardwares",
     icon: "cil-devices",
   },
   {
     _tag: "CSidebarNavItem",
     name: "System Author",
-    to: "/credits/aboutUs",
+    to: "/allUser/about/authors",
     icon: "cib-about-me",
   },
 
@@ -232,4 +232,4 @@ const _nav = [
   },
 ];
 
-export default _nav;
+export default aNav;

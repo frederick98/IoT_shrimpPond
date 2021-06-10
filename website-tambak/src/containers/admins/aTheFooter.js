@@ -2,7 +2,7 @@ import React from "react";
 import { CFooter } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
 
-const TheFooter = () => {
+const ATheFooter = () => {
   return (
     <CFooter fixed={false}>
       <div>
@@ -51,4 +51,4 @@ const TheFooter = () => {
   );
 };
 
-export default React.memo(TheFooter);
+export default React.memo(ATheFooter);

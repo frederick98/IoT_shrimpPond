@@ -10,7 +10,7 @@ import {
   CCol,
   CRow,
 } from "@coreui/react";
-import NodeStatus from "../../services/nodeStatus";
+import NodeStatus from "../../../services/nodeStatus";
 
 //const NodeCheck = () => {
 class NodeCheck extends Component {

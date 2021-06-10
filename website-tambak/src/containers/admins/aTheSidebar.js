@@ -12,9 +12,9 @@ import {
 } from "@coreui/react";
 
 // sidebar nav config
-import navigation from "./_nav";
+import navigation from "./aNav";
 
-const TheSidebar = () => {
+const ATheSidebar = () => {
   const dispatch = useDispatch();
   const show = useSelector((state) => state.sidebarShow);
 
@@ -39,4 +39,4 @@ const TheSidebar = () => {
   );
 };
 
-export default React.memo(TheSidebar);
+export default React.memo(ATheSidebar);

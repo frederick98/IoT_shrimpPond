@@ -9,7 +9,7 @@ import {
 } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
 
-const TheHeaderDropdownNotif = () => {
+const ATheHeaderDropdownNotif = () => {
   const itemsCount = 5;
   return (
     <CDropdown inNav className="c-header-nav-item mx-2">
@@ -68,4 +68,4 @@ const TheHeaderDropdownNotif = () => {
   );
 };
 
-export default TheHeaderDropdownNotif;
+export default ATheHeaderDropdownNotif;

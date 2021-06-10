@@ -11,11 +11,11 @@ import {
 } from "@coreui/react";
 
 // routes config
-import routes from "../routes";
+import routes from "../../routes";
 
-import { TheHeaderDropdown } from "./index";
+import { UTheHeaderDropdown } from "./uIndex";
 
-const TheHeader = () => {
+const UTheHeader = () => {
   const dispatch = useDispatch();
   const sidebarShow = useSelector((state) => state.sidebarShow);
 
@@ -48,16 +48,18 @@ const TheHeader = () => {
 
       <CHeaderNav className="d-md-down-none mr-auto">
         <CHeaderNavItem className="px-3">
-          <CHeaderNavLink to="/dashboard">Dashboard</CHeaderNavLink>
+          <CHeaderNavLink to="/users/UDashboard">Dashboard</CHeaderNavLink>
         </CHeaderNavItem>
         <CHeaderNavItem className="px-3">
-          <CHeaderNavLink to="/location">Shrimp Pond Locations</CHeaderNavLink>
+          <CHeaderNavLink to="/allUser/location">
+            Shrimp Pond Locations
+          </CHeaderNavLink>
         </CHeaderNavItem>
       </CHeaderNav>
 
       <CHeaderNav className="px-3">
         {/* <TheHeaderDropdownNotif /> */}
-        <TheHeaderDropdown />
+        <UTheHeaderDropdown />
       </CHeaderNav>
 
       <CSubheader className="px-3 justify-content-between">
@@ -84,4 +86,4 @@ const TheHeader = () => {
   );
 };
 
-export default TheHeader;
+export default UTheHeader;

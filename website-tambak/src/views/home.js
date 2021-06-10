@@ -29,7 +29,7 @@ class MainPage extends Component {
   }
   render() {
     if (sessionStorage.getItem("userData")) {
-      return <Redirect to={"/dashboard/Dashboard"} />;
+      return <Redirect to={"/admins/ADashboard"} />;
     }
     return (
       <div className="c-app c-default-layout flex-row align-items-center">
@@ -43,7 +43,7 @@ class MainPage extends Component {
               <CButton
                 color="primary"
                 className="px-4"
-                href="/#/dashboard"
+                href="/#/admins/ADashboard"
                 //onClick={this.login}
               >
                 Login
