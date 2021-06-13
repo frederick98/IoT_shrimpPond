@@ -9,16 +9,45 @@ const loading = (
 );
 
 // Containers
-const TheLayout = React.lazy(() => import("./containers/admins/aTheLayout"));
+const TheLayout = React.lazy(() => import("./containers/TheLayout"));
+const aTheLayout = React.lazy(() => import("./containers/TheLayout"));
 
 // Pages
 const MainPage = React.lazy(() => import("./views/home"));
 
-const Page404 = React.lazy(() => import("./views/pages/page404/Page404"));
-const Page500 = React.lazy(() => import("./views/pages/page500/Page500"));
+const Page404 = React.lazy(() =>
+  import("./views/helper/pages/page404/Page404")
+);
+const Page500 = React.lazy(() =>
+  import("./views/helper/pages/page500/Page500")
+);
 
 class App extends Component {
+  componentWillMount() {
+    console.log("appuserdata: " + sessionStorage.getItem("userData"));
+  }
+
   render() {
+    const logic = () => {
+      if (true) {
+        return (
+          <Route
+            path="/"
+            name="Home"
+            render={(props) => <uTheLayout {...props} />}
+          />
+        );
+      } else {
+        return (
+          <Route
+            path="/"
+            name="Home"
+            render={(props) => <aTheLayout {...props} />}
+          />
+        );
+      }
+    };
+
     return (
       <HashRouter>
         <React.Suspense fallback={loading}>
@@ -46,6 +75,20 @@ class App extends Component {
               name="Home"
               render={(props) => <TheLayout {...props} />}
             />
+            {/* {logic} */}
+            {/* <Route
+              path="/"
+              name="Home"
+              render={(props) => <TheLayout {...props} />}
+              // render={(props) => {
+              //   console.log("masuk");
+              //   if (true) {
+              //     <uTheLayout {...props} />;
+              //   } else {
+              //     <aTheLayout {...props} />;
+              //   }
+              // }}
+            /> */}
             <Redirect to="/404" />
           </Switch>
         </React.Suspense>

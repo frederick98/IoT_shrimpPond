@@ -10,7 +10,7 @@ import {
 } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
 
-class ATheHeaderDropdown extends Component {
+class TheHeaderDropdown extends Component {
   constructor(props) {
     super(props);
 
@@ -44,7 +44,7 @@ class ATheHeaderDropdown extends Component {
             <CImg
               src={"avatars/1.jpg"}
               className="c-avatar-img"
-              alt="Admin Main Picture"
+              alt="Profile Picture"
             />
             {/* <CIcon name="cil-user" className="mfe-2" /> */}
           </div>
@@ -113,4 +113,4 @@ class ATheHeaderDropdown extends Component {
     );
   }
 }
-export default ATheHeaderDropdown;
+export default TheHeaderDropdown;

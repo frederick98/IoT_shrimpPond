@@ -7,7 +7,8 @@ const NodeStatus = (props) => {
   const [item, setItem] = useState([]);
 
   useEffect(() => {
-    let url = "http://192.168.100.16/skrispi/IoT_shrimpPond/react-php/api/";
+    let url =
+      "http://192.168.100.16/skrispi/IoT_shrimpPond/react-php/api/index.php";
 
     //fetch("http://localhost/skrispi/IoT_shrimpPond/react-php/api/index.php")
     fetch(url + "?type=" + type)
@@ -30,7 +31,7 @@ const NodeStatus = (props) => {
             <th scope="col">ID Node</th>
             <th scope="col">Time</th>
             <th scope="col">Status Node</th>
-            <th scope="col">Status Monitoring</th>
+            <th scope="col">Status Sensor</th>
           </tr>
         </thead>
         <tbody>

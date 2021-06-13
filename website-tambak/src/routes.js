@@ -1,25 +1,29 @@
 import React from "react";
 
 const Toaster = React.lazy(() =>
-  import("./views/notifications/toaster/Toaster")
+  import("./views/helper/notifications/toaster/Toaster")
 );
 
 const Paginations = React.lazy(() =>
-  import("./views/base/paginations/Pagnations")
+  import("./views/helper/base/paginations/Pagnations")
 );
 const ProgressBar = React.lazy(() =>
-  import("./views/base/progress-bar/ProgressBar")
+  import("./views/helper/base/progress-bar/ProgressBar")
 );
 
 const BrandButtons = React.lazy(() =>
-  import("./views/buttons/brand-buttons/BrandButtons")
+  import("./views/helper/buttons/brand-buttons/BrandButtons")
 );
-const Buttons = React.lazy(() => import("./views/buttons/buttons/Buttons"));
+const Buttons = React.lazy(() =>
+  import("./views/helper/buttons/buttons/Buttons")
+);
 const CoreUIIcons = React.lazy(() =>
-  import("./views/icons/coreui-icons/CoreUIIcons")
+  import("./views/helper/icons/coreui-icons/CoreUIIcons")
 );
-const Brands = React.lazy(() => import("./views/icons/brands/Brands"));
-const Alerts = React.lazy(() => import("./views/notifications/alerts/Alerts"));
+const Brands = React.lazy(() => import("./views/helper/icons/brands/Brands"));
+const Alerts = React.lazy(() =>
+  import("./views/helper/notifications/alerts/Alerts")
+);
 
 const MainPage = React.lazy(() => import("./views/home"));
 
@@ -31,6 +35,7 @@ const ADataGraphics = React.lazy(() =>
 const ANodeCheck = React.lazy(() =>
   import("./views/admins/monitoring/aNodeCheck")
 );
+const AAddUser = React.lazy(() => import("./views/admins/account/aAddUser"));
 
 // User-Specific Routes
 const UDashboard = React.lazy(() => import("./views/users/uDashboard"));
@@ -62,9 +67,13 @@ const routes = [
     name: "Node Status Checking",
     component: ANodeCheck,
   },
+  {
+    path: "/admins/account/AAddUser",
+    name: "Add New User",
+    component: AAddUser,
+  },
 
   { path: "/", exact: true, name: "Home" },
-
   { path: "/mainPage", name: "Main", component: MainPage },
 
   // User-Specific Routes

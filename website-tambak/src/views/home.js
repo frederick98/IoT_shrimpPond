@@ -1,35 +1,61 @@
 import React, { Component } from "react";
 import { Link, Redirect } from "react-router-dom";
-import { CButton, CCol, CContainer, CRow } from "@coreui/react";
+import {
+  CButton,
+  CCol,
+  CContainer,
+  CRow,
+  CInput,
+  CCardGroup,
+  CCard,
+  CCardBody,
+  CForm,
+  CInputGroup,
+  CInputGroupPrepend,
+  CInputGroupText,
+} from "@coreui/react";
+import CIcon from "@coreui/icons-react";
+import { Profile } from "../services/profile";
 
 class MainPage extends Component {
   constructor() {
     super();
     this.state = {
-      // username: "",
-      // password: "",
+      username: "",
+      password: "",
+      jabatan: "",
       redirectToReferrer: false,
     };
-    //this.login = this.login.bind(this);
-    //this.onChange = this.onChange.bind(this);
+    this.login = this.login.bind(this);
+    this.onChange = this.onChange.bind(this);
   }
-  // login() {
-  //   if (this.state.username && this.state.password) {
-  //     PostData("login", this.state).then((result) => {
-  //       let responseJson = result;
-  //       if (responseJson.userData) {
-  //         sessionStorage.setItem("userData", JSON.stringify(responseJson));
-  //         this.setState({ redirectToReferrer: true });
-  //       } else alert(result.error);
-  //     });
-  //   } else alert("Please fill Username or Password!");
-  // }
+
+  login() {
+    if (this.state.username && this.state.password) {
+      Profile("login", this.state).then((result) => {
+        let responseJson = result;
+        if (responseJson.userData) {
+          sessionStorage.setItem("userData", JSON.stringify(responseJson));
+          this.setState({ jabatan: responseJson.userData.jabatan });
+          console.log(this.state.jabatan);
+          this.setState({ redirectToReferrer: true });
+        } else alert(result.error);
+      });
+    } else alert("Please fill Username or Password!");
+  }
+
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
+
   render() {
     if (sessionStorage.getItem("userData")) {
-      return <Redirect to={"/admins/ADashboard"} />;
+      // Sets which content pages shown to the users.
+      if (this.state.jabatan === 1) {
+        return <Redirect to={"/admins/ADashboard"} />;
+      } else {
+        return <Redirect to={"/users/uDashboard"} />;
+      }
     }
     return (
       <div className="c-app c-default-layout flex-row align-items-center">
@@ -40,16 +66,8 @@ class MainPage extends Component {
                 WSN-Based Water Quality Monitoring Application for Shrimp Pond
               </h2>
               <h5 className="py-2">2016730040 - Frederick</h5>
-              <CButton
-                color="primary"
-                className="px-4"
-                href="/#/admins/ADashboard"
-                //onClick={this.login}
-              >
-                Login
-              </CButton>
             </CCol>
-            {/* <CCol md="8">
+            <CCol md="8">
               <CCardGroup>
                 <CCard className="p-4">
                   <CCardBody>
@@ -99,7 +117,7 @@ class MainPage extends Component {
                   </CCardBody>
                 </CCard>
               </CCardGroup>
-            </CCol> */}
+            </CCol>
           </CRow>
         </CContainer>
       </div>

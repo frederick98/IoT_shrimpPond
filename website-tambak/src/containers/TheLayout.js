@@ -1,16 +1,23 @@
 import React from "react";
-import { UTheContent, UTheSidebar, UTheFooter, UTheHeader } from "./uIndex";
+import {
+  TheContent,
+  UTheSidebar,
+  //ATheContent,
+  ATheSidebar,
+  TheFooter,
+  TheHeader,
+} from "./allUser/Index";
 
 const TheLayout = () => {
   return (
     <div className="c-app c-default-layout">
-      <UTheSidebar />
+      <ATheSidebar />
       <div className="c-wrapper">
-        <UTheHeader />
+        <TheHeader />
         <div className="c-body">
-          <UTheContent />
+          <TheContent />
         </div>
-        <UTheFooter />
+        <TheFooter />
       </div>
     </div>
   );

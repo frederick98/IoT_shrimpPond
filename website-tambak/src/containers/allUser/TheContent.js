@@ -11,7 +11,7 @@ const loading = (
   </div>
 );
 
-const ATheContent = () => {
+const TheContent = () => {
   return (
     <main className="c-main">
       <CContainer fluid>
@@ -42,4 +42,4 @@ const ATheContent = () => {
   );
 };
 
-export default React.memo(ATheContent);
+export default React.memo(TheContent);

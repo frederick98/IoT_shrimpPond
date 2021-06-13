@@ -18,7 +18,7 @@ import {
   CModalTitle,
 } from "@coreui/react";
 
-import MainChartExample from "../../charts/MainChartExample.js";
+import MainChartExample from "../../helper/charts/MainChartExample.js";
 
 const DataGraphics = () => {
   const [warning, setWarning] = React.useState(true);

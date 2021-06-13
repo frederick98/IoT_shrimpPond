@@ -13,9 +13,9 @@ import {
 // routes config
 import routes from "../../routes";
 
-import { UTheHeaderDropdown } from "./uIndex";
+import { TheHeaderDropdown } from "./Index";
 
-const UTheHeader = () => {
+const TheHeader = () => {
   const dispatch = useDispatch();
   const sidebarShow = useSelector((state) => state.sidebarShow);
 
@@ -48,7 +48,7 @@ const UTheHeader = () => {
 
       <CHeaderNav className="d-md-down-none mr-auto">
         <CHeaderNavItem className="px-3">
-          <CHeaderNavLink to="/users/UDashboard">Dashboard</CHeaderNavLink>
+          <CHeaderNavLink to="/admins/ADashboard">Dashboard</CHeaderNavLink>
         </CHeaderNavItem>
         <CHeaderNavItem className="px-3">
           <CHeaderNavLink to="/allUser/location">
@@ -59,7 +59,7 @@ const UTheHeader = () => {
 
       <CHeaderNav className="px-3">
         {/* <TheHeaderDropdownNotif /> */}
-        <UTheHeaderDropdown />
+        <TheHeaderDropdown />
       </CHeaderNav>
 
       <CSubheader className="px-3 justify-content-between">
@@ -86,4 +86,4 @@ const UTheHeader = () => {
   );
 };
 
-export default UTheHeader;
+export default TheHeader;

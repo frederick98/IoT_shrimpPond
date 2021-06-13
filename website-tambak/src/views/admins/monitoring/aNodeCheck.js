@@ -32,8 +32,8 @@ class NodeCheck extends Component {
     //this.updateTimer = setInterval(() => this.loadNewData(), 10000);
 
     this.timer = setInterval(() => {
-      this.setState({ seconds: this.state.seconds + 1 });
-    }, 10000);
+      this.setState({ seconds: this.state.seconds + 2 });
+    }, 20000);
   }
 
   componentWillUnmount() {

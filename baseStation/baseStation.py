@@ -192,7 +192,7 @@ def updateDB(data):
     
     print("Data uploaded to DB")
     
-    updateNodeStat()
+    #updateNodeStat()
     
 
 """
@@ -352,7 +352,7 @@ while mainMenu:
                     future2 = executor.submit(updateDB, future.result())
                     print(future.result())
                     if(future.result() == ('', '', '', '', '', '', '', '', '')):
-                        #print('test')
+                       #print('test')
                         updateNodeStat()
                         print("Node Status Updated")
     elif(menu =="2"):

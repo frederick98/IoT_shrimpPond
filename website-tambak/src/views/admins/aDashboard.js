@@ -15,7 +15,7 @@ import {
 } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
 
-import MainChartExample from "../charts/MainChartExample.js";
+import MainChartExample from "../helper/charts/MainChartExample.js";
 
 //const WidgetsDropdown = lazy(() => import("../widgets/WidgetsDropdown.js"));
 //const WidgetsBrand = lazy(() => import("../widgets/WidgetsBrand.js"));
@@ -24,7 +24,7 @@ const Dashboard = () => {
   return (
     <>
       <CCard>
-        <CCardHeader>Control</CCardHeader>
+        <CCardHeader>Monitoring Control</CCardHeader>
         <CCardBody className="mb-4 align-items-center mt-3">
           <CRow>
             <CCol>
@@ -48,7 +48,7 @@ const Dashboard = () => {
                     <CIcon name="cil-bolt" />
                   </CDropdownToggle>
                   <CDropdownMenu className="pt-0" placement="bottom-end">
-                    <CDropdownItem href="/#/admins/nodeCheck">
+                    <CDropdownItem href="/#/admins/monitoring/ANodeCheck">
                       Start
                     </CDropdownItem>
                   </CDropdownMenu>
@@ -76,7 +76,70 @@ const Dashboard = () => {
                     <CIcon name="cil-bolt" />
                   </CDropdownToggle>
                   <CDropdownMenu className="pt-0" placement="bottom-end">
-                    <CDropdownItem href="/#/admins/monitoring">
+                    <CDropdownItem href="/#/allUser/monitoring/monitoring">
+                      Start
+                    </CDropdownItem>
+                  </CDropdownMenu>
+                </CDropdown>
+              </CWidgetDropdown>
+            </CCol>
+          </CRow>
+        </CCardBody>
+      </CCard>
+      <CCard>
+        <CCardHeader>User Control</CCardHeader>
+        <CCardBody className="mb-4 align-items-center mt-3">
+          <CRow>
+            <CCol>
+              <CWidgetDropdown
+                color="gradient-primary"
+                header="Add User"
+                text="Add new user who can access the apps."
+                // footerSlot={
+                //   <CWidgetProgressIcon
+                //     header="2"
+                //     text="Total Node"
+                //     color="gradient-info"
+                //     inverse
+                //   >
+                //     <CIcon name="cil-people" height="36" />
+                //   </CWidgetProgressIcon>
+                // }
+              >
+                <CDropdown>
+                  <CDropdownToggle color="transparent">
+                    <CIcon name="cil-people" />
+                  </CDropdownToggle>
+                  <CDropdownMenu className="pt-0" placement="bottom-end">
+                    <CDropdownItem href="/#/admins/account/AAddUser">
+                      Start
+                    </CDropdownItem>
+                  </CDropdownMenu>
+                </CDropdown>
+              </CWidgetDropdown>
+            </CCol>
+            <CCol>
+              <CWidgetDropdown
+                color="gradient-primary"
+                header="Delete User"
+                text="Delete User allowed to login to the apps"
+                // footerSlot={
+                //   <CWidgetProgressIcon
+                //     header=""
+                //     text=""
+                //     color="gradient-info"
+                //     inverse
+                //   >
+                //     <CIcon name="cil-delete" height="36" />
+                //   </CWidgetProgressIcon>
+                // }
+              >
+                <CDropdown>
+                  <CDropdownToggle color="transparent">
+                    <CIcon name="cil-delete" />
+                  </CDropdownToggle>
+                  <CDropdownMenu className="pt-0" placement="bottom-end">
+                    <CDropdownItem href="/#/allUser/monitoring/monitoring">
                       Start
                     </CDropdownItem>
                   </CDropdownMenu>
@@ -111,7 +174,9 @@ const Dashboard = () => {
                     <CIcon name="cil-bolt" />
                   </CDropdownToggle>
                   <CDropdownMenu className="pt-0" placement="bottom-end">
-                    <CDropdownItem href="/#/help/howTo">Start</CDropdownItem>
+                    <CDropdownItem href="/#/allUser/help/howTo">
+                      Start
+                    </CDropdownItem>
                   </CDropdownMenu>
                 </CDropdown>
               </CWidgetDropdown>
@@ -144,7 +209,7 @@ const Dashboard = () => {
                     <CIcon name="cil-bolt" />
                   </CDropdownToggle>
                   <CDropdownMenu className="pt-0" placement="bottom-end">
-                    <CDropdownItem href="/#/credits/features">
+                    <CDropdownItem href="/#/allUser/about/features">
                       Start
                     </CDropdownItem>
                   </CDropdownMenu>
@@ -172,7 +237,7 @@ const Dashboard = () => {
                     <CIcon name="cil-bolt" />
                   </CDropdownToggle>
                   <CDropdownMenu className="pt-0" placement="bottom-end">
-                    <CDropdownItem href="/#/credits/hardwares">
+                    <CDropdownItem href="/#/allUser/about/hardwares">
                       Start
                     </CDropdownItem>
                   </CDropdownMenu>
@@ -200,7 +265,7 @@ const Dashboard = () => {
                     <CIcon name="cil-bolt" />
                   </CDropdownToggle>
                   <CDropdownMenu className="pt-0" placement="bottom-end">
-                    <CDropdownItem href="/#/credits/aboutUs">
+                    <CDropdownItem href="/#/allUser/about/authors">
                       Contact!
                     </CDropdownItem>
                   </CDropdownMenu>

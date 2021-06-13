@@ -16,6 +16,7 @@ import {
   cilFork,
   cilBolt,
   cilContact,
+  cilDelete,
 } from "@coreui/icons";
 import {
   cibSkype,
@@ -153,8 +154,8 @@ export const icons = Object.assign(
     cilFork,
     cilBolt,
     cilContact,
+    cilDelete,
   },
-  {},
   {
     sygnet,
     logo,

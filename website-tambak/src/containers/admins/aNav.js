@@ -26,7 +26,7 @@ const aNav = [
   },
   {
     _tag: "CSidebarNavTitle",
-    _children: ["Admin Menu"],
+    _children: ["Monitoring Menu"],
   },
   {
     _tag: "CSidebarNavItem",
@@ -50,6 +50,16 @@ const aNav = [
     name: "Monitoring",
     to: "/allUser/monitoring/monitoring",
     icon: <CIcon name="cil-tv" customClasses="c-sidebar-nav-icon" />,
+  },
+  {
+    _tag: "CSidebarNavTitle",
+    _children: ["User Account"],
+  },
+  {
+    _tag: "CSidebarNavItem",
+    name: "Add New User",
+    to: "/admins/account/AAddUser",
+    icon: <CIcon name="cil-people" customClasses="c-sidebar-nav-icon" />,
   },
   {
     _tag: "CSidebarNavTitle",
