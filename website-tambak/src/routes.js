@@ -73,9 +73,6 @@ const routes = [
     component: AAddUser,
   },
 
-  { path: "/", exact: true, name: "Home" },
-  { path: "/mainPage", name: "Main", component: MainPage },
-
   // User-Specific Routes
   { path: "/users/UDashboard", name: "Dashboard", component: UDashboard },
   {
@@ -105,6 +102,8 @@ const routes = [
     component: BHardwares,
   },
 
+  { path: "/", exact: true, name: "Home" },
+  { path: "/mainPage", name: "Main", component: MainPage },
   { path: "/base/paginations", name: "Paginations", component: Paginations },
   { path: "/base/progress-bar", name: "Progress Bar", component: ProgressBar },
   { path: "/buttons", name: "Buttons", component: Buttons, exact: true },

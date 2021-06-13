@@ -48,7 +48,7 @@ const Dashboard = () => {
                     <CIcon name="cil-bolt" />
                   </CDropdownToggle>
                   <CDropdownMenu className="pt-0" placement="bottom-end">
-                    <CDropdownItem href="/#/admins/monitoring">
+                    <CDropdownItem href="/#/allUser/monitoring/monitoring">
                       Start
                     </CDropdownItem>
                   </CDropdownMenu>
@@ -83,7 +83,9 @@ const Dashboard = () => {
                     <CIcon name="cil-bolt" />
                   </CDropdownToggle>
                   <CDropdownMenu className="pt-0" placement="bottom-end">
-                    <CDropdownItem href="/#/help/howTo">Start</CDropdownItem>
+                    <CDropdownItem href="/#/allUser/help/howTo">
+                      Start
+                    </CDropdownItem>
                   </CDropdownMenu>
                 </CDropdown>
               </CWidgetDropdown>
@@ -116,7 +118,7 @@ const Dashboard = () => {
                     <CIcon name="cil-bolt" />
                   </CDropdownToggle>
                   <CDropdownMenu className="pt-0" placement="bottom-end">
-                    <CDropdownItem href="/#/credits/features">
+                    <CDropdownItem href="/#/allUser/about/features">
                       Start
                     </CDropdownItem>
                   </CDropdownMenu>
@@ -144,7 +146,7 @@ const Dashboard = () => {
                     <CIcon name="cil-bolt" />
                   </CDropdownToggle>
                   <CDropdownMenu className="pt-0" placement="bottom-end">
-                    <CDropdownItem href="/#/credits/hardwares">
+                    <CDropdownItem href="/#/allUser/about/hardwares">
                       Start
                     </CDropdownItem>
                   </CDropdownMenu>
@@ -172,7 +174,7 @@ const Dashboard = () => {
                     <CIcon name="cil-bolt" />
                   </CDropdownToggle>
                   <CDropdownMenu className="pt-0" placement="bottom-end">
-                    <CDropdownItem href="/#/credits/aboutUs">
+                    <CDropdownItem href="/#/allUser/about/authors">
                       Contact!
                     </CDropdownItem>
                   </CDropdownMenu>
