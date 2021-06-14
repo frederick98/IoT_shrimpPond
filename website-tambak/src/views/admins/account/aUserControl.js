@@ -276,17 +276,6 @@ class AUserControl extends Component {
             </CCard>
           </CCol>
         </CRow>
-        <div className="c-app c-default-layout flex-row align-items-center">
-          <CContainer>
-            <CRow className="justify-content-center">
-              <CCol md="9" lg="7" xl="6">
-                <CCard className="mx-4">
-                  <CCardBody className="p-4"></CCardBody>
-                </CCard>
-              </CCol>
-            </CRow>
-          </CContainer>
-        </div>
       </>
     );
   }

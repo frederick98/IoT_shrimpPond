@@ -4,6 +4,7 @@ export function Profile(type, userData) {
     "http://192.168.100.16/skrispi/IoT_shrimpPond/react-php/api/index.php";
   //let url = ("http://localhost/skrispi/IoT_shrimpPond/react-php/api/");
   return new Promise((resolve, reject) => {
+    //console.log("type: ", type);
     //console.log("userdata: ", userData);
     fetch(url + "?type=" + type, {
       method: "POST",

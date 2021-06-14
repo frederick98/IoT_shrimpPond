@@ -89,6 +89,35 @@ const Dashboard = () => {
                 </CDropdown>
               </CWidgetDropdown>
             </CCol>
+            <CCol>
+              <CWidgetDropdown
+                color="gradient-primary"
+                header="Add New Nodes"
+                text="Add more sensor nodes to monitoring, if you have purchased some new nodes"
+                footerSlot={
+                  <CWidgetProgressIcon
+                    value={100}
+                    header="1000"
+                    text="Max Node in a Network Topology"
+                    color="gradient-info"
+                    inverse
+                  >
+                    <CIcon name="cil-plus" height="36" />
+                  </CWidgetProgressIcon>
+                }
+              >
+                <CDropdown>
+                  <CDropdownToggle color="transparent">
+                    <CIcon name="cil-bolt" />
+                  </CDropdownToggle>
+                  <CDropdownMenu className="pt-0" placement="bottom-end">
+                    <CDropdownItem href="/#/admins/monitoring/AAddNode">
+                      Start
+                    </CDropdownItem>
+                  </CDropdownMenu>
+                </CDropdown>
+              </CWidgetDropdown>
+            </CCol>
           </CRow>
         </CCardBody>
       </CCard>
@@ -99,53 +128,25 @@ const Dashboard = () => {
             <CCol>
               <CWidgetDropdown
                 color="gradient-primary"
-                header="Add User"
-                text="Add new user who can access the apps."
-                // footerSlot={
-                //   <CWidgetProgressIcon
-                //     header="2"
-                //     text="Total Node"
-                //     color="gradient-info"
-                //     inverse
-                //   >
-                //     <CIcon name="cil-people" height="36" />
-                //   </CWidgetProgressIcon>
-                // }
+                header="Manage User"
+                text="Maintain user available, and delete who's not eligible to use the apps."
+                footerSlot={
+                  <CWidgetProgressIcon
+                    header="6"
+                    text="Total User"
+                    color="gradient-info"
+                    inverse
+                  >
+                    <CIcon name="cil-people" height="36" />
+                  </CWidgetProgressIcon>
+                }
               >
                 <CDropdown>
                   <CDropdownToggle color="transparent">
                     <CIcon name="cil-people" />
                   </CDropdownToggle>
                   <CDropdownMenu className="pt-0" placement="bottom-end">
-                    <CDropdownItem href="/#/admins/account/AAddUser">
-                      Start
-                    </CDropdownItem>
-                  </CDropdownMenu>
-                </CDropdown>
-              </CWidgetDropdown>
-            </CCol>
-            <CCol>
-              <CWidgetDropdown
-                color="gradient-primary"
-                header="Delete User"
-                text="Delete User allowed to login to the apps"
-                // footerSlot={
-                //   <CWidgetProgressIcon
-                //     header=""
-                //     text=""
-                //     color="gradient-info"
-                //     inverse
-                //   >
-                //     <CIcon name="cil-delete" height="36" />
-                //   </CWidgetProgressIcon>
-                // }
-              >
-                <CDropdown>
-                  <CDropdownToggle color="transparent">
-                    <CIcon name="cil-delete" />
-                  </CDropdownToggle>
-                  <CDropdownMenu className="pt-0" placement="bottom-end">
-                    <CDropdownItem href="/#/allUser/monitoring/monitoring">
+                    <CDropdownItem href="/#/admins/account/AUserControl">
                       Start
                     </CDropdownItem>
                   </CDropdownMenu>

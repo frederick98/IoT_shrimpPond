@@ -35,6 +35,7 @@ const ADataGraphics = React.lazy(() =>
 const ANodeCheck = React.lazy(() =>
   import("./views/admins/monitoring/aNodeCheck")
 );
+const AAdd = React.lazy(() => import("./views/admins/monitoring/aAdd"));
 const AUserControl = React.lazy(() =>
   import("./views/admins/account/aUserControl")
 );
@@ -73,6 +74,11 @@ const routes = [
     path: "/admins/monitoring/ANodeCheck",
     name: "Node Status Checking",
     component: ANodeCheck,
+  },
+  {
+    path: "/admins/monitoring/AAdd",
+    name: "Add New Node/Pond",
+    component: AAdd,
   },
   {
     path: "/admins/account/AUserControl",

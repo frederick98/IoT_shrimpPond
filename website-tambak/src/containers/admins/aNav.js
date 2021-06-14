@@ -52,6 +52,12 @@ const aNav = [
     icon: <CIcon name="cil-tv" customClasses="c-sidebar-nav-icon" />,
   },
   {
+    _tag: "CSidebarNavItem",
+    name: "Add New Node",
+    to: "/admins/monitoring/AAdd",
+    icon: "cil-plus",
+  },
+  {
     _tag: "CSidebarNavTitle",
     _children: ["User Account"],
   },
