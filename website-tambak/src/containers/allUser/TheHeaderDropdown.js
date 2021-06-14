@@ -30,6 +30,8 @@ class TheHeaderDropdown extends Component {
   logout() {
     sessionStorage.setItem("userData", "");
     sessionStorage.clear();
+    this.setState({ jabatan: "" });
+    //console.log("jabatan: " + this.state.jabatan);
     this.setState({ redirectToReferrer: true });
   }
 

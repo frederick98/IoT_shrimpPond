@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
   CCreateElement,
@@ -12,11 +12,16 @@ import {
 } from "@coreui/react";
 
 // sidebar nav config
-import navigation from "./aNav";
+import navigation1 from "../admins/aNav";
+import navigation2 from "../users/uNav";
 
-const ATheSidebar = () => {
+const TheSidebar = () => {
   const dispatch = useDispatch();
   const show = useSelector((state) => state.sidebarShow);
+  useEffect(() => {
+    const jabatan = sessionStorage.getItem("jabatan");
+    //console.log("jabatan= " + jabatan);
+  }, []);
 
   return (
     <CSidebar
@@ -25,7 +30,11 @@ const ATheSidebar = () => {
     >
       <CSidebarNav>
         <CCreateElement
-          items={navigation}
+          //items={navigation}
+          //items={this.state.jabatan == 1 ? navigation1 : navigation2}
+          items={
+            sessionStorage.getItem("jabatan") == 1 ? navigation1 : navigation2
+          }
           components={{
             CSidebarNavDivider,
             CSidebarNavDropdown,
@@ -39,4 +48,4 @@ const ATheSidebar = () => {
   );
 };
 
-export default React.memo(ATheSidebar);
+export default React.memo(TheSidebar);

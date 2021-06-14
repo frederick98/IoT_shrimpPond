@@ -1,9 +1,9 @@
 import React from "react";
 import {
   TheContent,
-  UTheSidebar,
+  TheSidebar,
   //ATheContent,
-  ATheSidebar,
+  //ATheSidebar,
   TheFooter,
   TheHeader,
 } from "./allUser/Index";
@@ -11,7 +11,7 @@ import {
 const TheLayout = () => {
   return (
     <div className="c-app c-default-layout">
-      <ATheSidebar />
+      <TheSidebar />
       <div className="c-wrapper">
         <TheHeader />
         <div className="c-body">

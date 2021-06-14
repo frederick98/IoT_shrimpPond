@@ -56,7 +56,12 @@ const BAboutUs = React.lazy(() => import("./views/allUser/about/bAuthor"));
 
 const routes = [
   // Admin-Specific Routes
-  { path: "/admins/ADashboard", name: "Dashboard", component: ADashboard },
+  {
+    path: "/admins/ADashboard",
+    name: "Dashboard",
+    component: ADashboard,
+    id: 1,
+  },
   {
     path: "/admins/monitoring/ADataGraphics",
     name: "Data Graphics Diagram",
@@ -74,7 +79,12 @@ const routes = [
   },
 
   // User-Specific Routes
-  { path: "/users/UDashboard", name: "Dashboard", component: UDashboard },
+  {
+    path: "/users/UDashboard",
+    name: "Dashboard",
+    component: UDashboard,
+    id: 0,
+  },
   {
     path: "/users/monitoring/UDataGraphics",
     name: "Data Graphics Diagram",

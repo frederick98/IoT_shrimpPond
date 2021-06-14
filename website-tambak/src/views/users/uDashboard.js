@@ -21,6 +21,7 @@ import MainChartExample from "../helper/charts/MainChartExample.js";
 //const WidgetsBrand = lazy(() => import("../widgets/WidgetsBrand.js"));
 
 const Dashboard = () => {
+  sessionStorage.setItem("id", 0);
   return (
     <>
       <CCard>

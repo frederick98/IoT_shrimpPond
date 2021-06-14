@@ -21,6 +21,12 @@ import MainChartExample from "../helper/charts/MainChartExample.js";
 //const WidgetsBrand = lazy(() => import("../widgets/WidgetsBrand.js"));
 
 const Dashboard = () => {
+  // window.onload = function () {
+  //   window.location = window.location + "#loaded";
+  //   window.location.reload();
+  // };
+
+  sessionStorage.setItem("id", 1);
   return (
     <>
       <CCard>

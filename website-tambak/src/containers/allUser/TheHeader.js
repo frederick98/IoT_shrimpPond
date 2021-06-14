@@ -48,7 +48,15 @@ const TheHeader = () => {
 
       <CHeaderNav className="d-md-down-none mr-auto">
         <CHeaderNavItem className="px-3">
-          <CHeaderNavLink to="/">Dashboard</CHeaderNavLink>
+          <CHeaderNavLink
+            to={
+              sessionStorage.getItem("jabatan") == 1
+                ? "/admins/ADashboard"
+                : "/users/UDashboard"
+            }
+          >
+            Dashboard
+          </CHeaderNavLink>
         </CHeaderNavItem>
         <CHeaderNavItem className="px-3">
           <CHeaderNavLink to="/allUser/location">

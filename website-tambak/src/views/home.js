@@ -51,9 +51,11 @@ class MainPage extends Component {
   render() {
     if (sessionStorage.getItem("userData")) {
       // Sets which content pages shown to the users.
-      if (this.state.jabatan === 1) {
+      if (this.state.jabatan == 1) {
+        sessionStorage.setItem("jabatan", 1);
         return <Redirect to={"/admins/ADashboard"} />;
       } else {
+        sessionStorage.setItem("jabatan", 0);
         return <Redirect to={"/users/uDashboard"} />;
       }
     }

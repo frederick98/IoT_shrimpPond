@@ -11,6 +11,11 @@ const loading = (
   </div>
 );
 
+const getId = ({ id }) => {
+  //console.log(id);
+  return id;
+};
+
 const TheContent = () => {
   return (
     <main className="c-main">
@@ -25,6 +30,7 @@ const TheContent = () => {
                     path={route.path}
                     exact={route.exact}
                     name={route.name}
+                    id={route.id}
                     render={(props) => (
                       <CFade>
                         <route.component {...props} />
@@ -34,7 +40,15 @@ const TheContent = () => {
                 )
               );
             })}
-            <Redirect from="/" to="/mainPage" />;
+            <Redirect
+              from="/"
+              to={
+                sessionStorage.getItem("jabatan") == 1
+                  ? "/admins/ADashboard"
+                  : "/users/UDashboard"
+              }
+            />
+            ;
           </Switch>
         </Suspense>
       </CContainer>

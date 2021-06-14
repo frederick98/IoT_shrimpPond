@@ -3,10 +3,10 @@ import TheHeader from "./TheHeader";
 import TheHeaderDropdown from "./TheHeaderDropdown";
 import TheHeaderDropdownNotif from "./TheHeaderDropdownNotif";
 import TheLayout from "../TheLayout";
-import UTheSidebar from "../users/uTheSidebar";
+//import UTheSidebar from "./TheSidebar";
 import TheContent from "./TheContent";
 //import ATheContent from "./TheContent";
-import ATheSidebar from "../admins/aTheSidebar";
+import TheSidebar from "./TheSidebar";
 
 export {
   TheFooter,
@@ -15,7 +15,7 @@ export {
   TheHeaderDropdownNotif,
   TheLayout,
   TheContent,
-  UTheSidebar,
+  //UTheSidebar,
   //ATheContent,
-  ATheSidebar,
+  TheSidebar,
 };
