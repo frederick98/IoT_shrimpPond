@@ -57,8 +57,8 @@ const aNav = [
   },
   {
     _tag: "CSidebarNavItem",
-    name: "Add New User",
-    to: "/admins/account/AAddUser",
+    name: "Manage User Access",
+    to: "/admins/account/AUserControl",
     icon: <CIcon name="cil-people" customClasses="c-sidebar-nav-icon" />,
   },
   {

@@ -35,6 +35,7 @@
     elseif($type == 'status') status();
     elseif($type == 'login') login();
     elseif($type == 'register') register();
+    elseif($type == 'userList') userList();
 ;
     function node1(){
         require 'config.php';
@@ -103,55 +104,70 @@
         require 'config.php';
 
         $json = json_decode(file_get_contents('php://input'), true);
+        //var_dump($json);
         ///echo $json;
         $email = $json['nEmail'];
         $name = $json['nName'];
         $username = $json['nUsername']; 
         $password = $json['nPassword'];
         
-        echo ("username: " + $username);
+        //echo ("username: ".$username);
 
         $username_check = preg_match("/^[A-Za-z0-9_]{4,10}$/i", $username);
         $email_check = preg_match('/^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.([a-zA-Z]{2,4})$/i', $email);
         $password_check = preg_match('/^[A-Za-z0-9!@#$%^&*()_]{4,20}$/i', $password);
 
-        // if($username_check == 0){
-        //     //echo '{"error": "Invalid username!"}';
-        // }
-        // elseif($email_check == 0){
-        //     echo '{"error": "Invalid email!"}';
-        // }
-        // elseif($password_check == 0){
-        //     echo '{"error": "Invalid password!"}';
-        // }
-        // elseif(strlen(trim($username))>0 && 
-        //         strlen(trim($password))>0 && 
-        //         strlen(trim($email))>0 && 
-        //         $email_check>0 && $username_check>0 && $password_check>0){
+        if($username_check == 0){
+            echo '{"error": "Invalid username!"}';
+        }
+        elseif($email_check == 0){
+            echo '{"error": "Invalid email!"}';
+        }
+        elseif($password_check == 0){
+            echo '{"error": "Invalid password!"}';
+        }
+        elseif(strlen(trim($username))>0 && 
+                strlen(trim($password))>0 && 
+                strlen(trim($email))>0 && 
+                $email_check>0 && $username_check>0 && $password_check>0){
             
-        //     $userData = '';
+            $userData = '';
 
-        //     $result = $connection->query("SELECT * FROM User WHERE username='$username' OR email='$email'");
-        //     $rowCount = $result->num_rows;
+            $result = $connection->query("SELECT * FROM User WHERE username='$username' OR email='$email'");
+            $rowCount = $result->num_rows;
 
-        //     if($rowCount == 0){
-        //         $connection->query("INSERT INTO User(username, password, email, name)
-        //             VALUES('$username', '$password', '$email', '$name')");
+            if($rowCount == 0){
+                $connection->query("INSERT INTO User(username, `password`, email, namaUser)
+                    VALUES('$username', '$password', '$email', '$name')");
                         
-        //         $userData = '';
-        //         $query = "SELECT * FROM User WHERE username='$username' AND password='$password'";
-        //         $result = $connection->query($query);
-        //         $userData = $result->fetch_object();
-        //         $userID = $userData->idUser;
-        //         $userData = json_encode($userData);
-        //         echo '{"userData":'.$userData.'}';
-        //     }
-        //     else{
-        //         echo '{"error":"username or email already exists"}';
-        //     }
-        // }
-        // else{
-        //     echo '{"text": "Enter valid data!"}';
-        // }
+                $userData = '';
+                $query = "SELECT * FROM User WHERE username='$username' AND `password`='$password'";
+                $result = $connection->query($query);
+                $userData = $result->fetch_object();
+                $userID = $userData->idUser;
+                $userData = json_encode($userData);
+                echo '{"userData":'.$userData.'}';
+            }
+            else{
+                echo '{"error":"username or email already exists"}';
+            }
+        }
+        else{
+            echo '{"text": "Enter valid data!"}';
+        }
+    }
+
+    function userList(){
+        require 'config.php';
+
+        $sql = "SELECT idUser, username, namaUser, email FROM User";
+        $result = mysqli_query($connection, $sql);
+
+        $json_array = array();
+        while($row = mysqli_fetch_assoc($result)){
+            $json_array[] = $row;
+        }
+
+        echo json_encode($json_array);
     }
 ?>

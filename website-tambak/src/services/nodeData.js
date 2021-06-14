@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 
 const NodeData = (props) => {
   const [type, setType] = useState(props.idNode);
-  console.log("props = " + props.idNode + "");
+  //console.log("props = " + props.idNode + "");
 
   const [item, setItem] = useState([]);
 
@@ -31,7 +31,7 @@ const NodeData = (props) => {
             <th scope="col">Turbidity (NTU)</th>
             <th scope="col">pH</th>
             <th scope="col">Salinity (ppt)</th>
-            <th scope="col">DO</th>
+            <th scope="col">DO (mg/L)</th>
           </tr>
         </thead>
         <tbody>

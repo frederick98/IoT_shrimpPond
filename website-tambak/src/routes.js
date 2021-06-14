@@ -35,7 +35,9 @@ const ADataGraphics = React.lazy(() =>
 const ANodeCheck = React.lazy(() =>
   import("./views/admins/monitoring/aNodeCheck")
 );
-const AAddUser = React.lazy(() => import("./views/admins/account/aAddUser"));
+const AUserControl = React.lazy(() =>
+  import("./views/admins/account/aUserControl")
+);
 
 // User-Specific Routes
 const UDashboard = React.lazy(() => import("./views/users/uDashboard"));
@@ -73,9 +75,9 @@ const routes = [
     component: ANodeCheck,
   },
   {
-    path: "/admins/account/AAddUser",
-    name: "Add New User",
-    component: AAddUser,
+    path: "/admins/account/AUserControl",
+    name: "Manage User Access",
+    component: AUserControl,
   },
 
   // User-Specific Routes
