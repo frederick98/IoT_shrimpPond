@@ -29,34 +29,21 @@
     // }
     
     $type = $_GET['type'];
+    $idNode = $_GET['idN'];
 
-    if($type == 'node1') node1();
-    elseif($type == 'node2') node2();
+    if($type == 'node') node($idNode);
     elseif($type == 'status') status();
     elseif($type == 'login') login();
     elseif($type == 'register') register();
     elseif($type == 'userList') userList();
     elseif($type == 'addNode') addNode();
     elseif($type == 'addPond') addPond();
+    elseif($type == 'calc') calc();
 ;
-    function node1(){
+    function node($idNode){
         require 'config.php';
 
-        $sql = "SELECT * FROM Pengamatan WHERE idNode=1 ORDER BY waktuPengamatan DESC LIMIT 10";
-        $result = mysqli_query($connection, $sql);
-
-        $json_array = array();
-        while($row = mysqli_fetch_assoc($result)){
-            $json_array[] = $row;
-        }
-
-        echo json_encode($json_array);
-    }
-
-    function node2(){
-        require 'config.php';
-
-        $sql = "SELECT * FROM Pengamatan WHERE idNode=2 ORDER BY waktuPengamatan DESC LIMIT 10";
+        $sql = "SELECT * FROM Pengamatan WHERE idNode='$idNode' ORDER BY waktuPengamatan DESC LIMIT 10";
         $result = mysqli_query($connection, $sql);
 
         $json_array = array();
@@ -256,5 +243,17 @@
         else{
             echo '{"text": "Enter valid Pond ID!"}';
         }
+    }
+
+    function calc(){
+        require 'config.php';
+
+        $sql = "SELECT * FROM Node ORDER BY Node.idNode";
+        $result = mysqli_query($connection, $sql);
+        $json_array = array();
+        while($row = mysqli_fetch_assoc($result)){
+            $json_array[] = $row;
+        }
+        echo json_encode($json_array);
     }
 ?>

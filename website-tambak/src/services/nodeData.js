@@ -10,7 +10,7 @@ const NodeData = (props) => {
     let url = "http://192.168.100.16/skrispi/IoT_shrimpPond/react-php/api/";
 
     //fetch("http://localhost/skrispi/IoT_shrimpPond/react-php/api/index.php")
-    fetch(url + "?type=" + type)
+    fetch(url + "?type=" + "node" + "&idN=" + type)
       .then((res) => res.json())
       .then((result) => {
         //console.log(result);
