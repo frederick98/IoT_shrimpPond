@@ -30,15 +30,18 @@
     
     $type = $_GET['type'];
     $idNode = $_GET['idN'];
+    $username = $_GET['username'];
 
     if($type == 'node') node($idNode);
     elseif($type == 'status') status();
     elseif($type == 'login') login();
     elseif($type == 'register') register();
+    elseif($type == 'delUser') delUser($username);
     elseif($type == 'userList') userList();
     elseif($type == 'addNode') addNode();
     elseif($type == 'addPond') addPond();
     elseif($type == 'calc') calc();
+
 ;
     function node($idNode){
         require 'config.php';
@@ -87,6 +90,32 @@
         else{
             echo '{"error": "Wrong username and password"}';
         }
+    }
+
+    function delUser($username){
+        require 'config.php';
+
+        // $json = json_decode(file_get_contents('php://input'), true);
+        // $username = $json['dUsername'];
+        //$name = $username;
+
+        // $sql = "SELECT * FROM User WHERE username=$username";
+        // $result = $connection->query($sql);
+        // $rowCount = $result->num_rows;
+        //if($rowCount > 0){
+        $sql = "DELETE FROM User WHERE username='$username'";
+        $result = $connection->query($sql);
+        if($result){
+            echo '{"success":'.$username.' " successfully deleted"}';
+        }
+        else{
+            echo '{"error": "Username not available"}';
+        }
+            //echo '{"success":'.$username.' " successfully deleted"}';
+        //}
+       // else{
+            //echo '{"error": "Username not available"}';
+       // }
     }
 
     function register(){

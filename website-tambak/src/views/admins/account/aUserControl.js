@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Profile } from "../../../services/profile";
+import { DeleteUser } from "../../../services/delUser";
 import { Redirect } from "react-router-dom";
 import {
   CButton,
@@ -8,6 +9,7 @@ import {
   CCardBody,
   CCol,
   CContainer,
+  CAlert,
   CForm,
   CInput,
   CInputGroup,
@@ -27,10 +29,12 @@ class AUserControl extends Component {
       nPassword: "",
       nEmail: "",
       nName: "",
+      dUsername: "",
       redirectToReferrer: false,
     };
     this.register = this.register.bind(this);
     this.onChange = this.onChange.bind(this);
+    this.delete = this.delete.bind(this);
   }
 
   //state = { seconds: 1 };
@@ -64,6 +68,19 @@ class AUserControl extends Component {
           alert(result.error);
         }
       });
+    } else {
+      alert("Complete field needed!");
+    }
+  }
+
+  delete() {
+    let data = this.state.dUsername;
+    if (this.state.dUsername) {
+      DeleteUser("delUser", data);
+      alert("Delete Success! User has been deleted.");
+      this.props.history.push("/admins/ADashboard");
+    } else {
+      alert("Insert Username to be deleted!");
     }
   }
 
@@ -86,21 +103,7 @@ class AUserControl extends Component {
               </CCardHeader>
               <CCardBody>
                 <UserList />
-                {/* <NodeStatus idCheck="status" /> */}
                 <div class="my-3"></div>
-                {/* <CTooltip
-                  content={`You don't need to click the button, table refreshed every 1 seconds already!`}
-                  placement="bottom"
-                >
-                  <CButton
-                    // onClick={window.location.reload()}
-                    color="primary"
-                    size="lg"
-                    block
-                  >
-                    Check Node Status
-                  </CButton>
-                </CTooltip> */}
               </CCardBody>
             </CCard>
           </CCol>
@@ -201,71 +204,25 @@ class AUserControl extends Component {
                       <CCardBody>
                         <CForm>
                           <p className="text-muted">
-                            Create new account for new user
+                            Removes registered account.{" "}
+                            <strong>This can't be undone!</strong>
                           </p>
                           <CInputGroup className="mb-3">
                             <CInputGroupPrepend>
                               <CInputGroupText>
-                                <CIcon name="cil-envelope-closed" />
-                              </CInputGroupText>
-                            </CInputGroupPrepend>
-                            <CInput
-                              type="text"
-                              placeholder="Insert E-Mail"
-                              autoComplete="email"
-                              name="nEmail"
-                              onChange={this.onChange}
-                            />
-                          </CInputGroup>
-                          <CInputGroup className="mb-3">
-                            <CInputGroupPrepend>
-                              <CInputGroupText>
                                 <CIcon name="cil-user" />
                               </CInputGroupText>
                             </CInputGroupPrepend>
                             <CInput
                               type="text"
-                              placeholder="Insert your Name"
-                              autoComplete="name"
-                              name="nName"
-                              onChange={this.onChange}
-                            />
-                          </CInputGroup>
-                          <CInputGroup className="mb-3">
-                            <CInputGroupPrepend>
-                              <CInputGroupText>
-                                <CIcon name="cil-user" />
-                              </CInputGroupText>
-                            </CInputGroupPrepend>
-                            <CInput
-                              type="text"
-                              placeholder="Insert Username"
+                              placeholder="Insert Username to be deleted"
                               autoComplete="username"
-                              name="nUsername"
+                              name="dUsername"
                               onChange={this.onChange}
                             />
                           </CInputGroup>
-                          <CInputGroup className="mb-3">
-                            <CInputGroupPrepend>
-                              <CInputGroupText>
-                                <CIcon name="cil-lock-locked" />
-                              </CInputGroupText>
-                            </CInputGroupPrepend>
-                            <CInput
-                              type="password"
-                              placeholder="Insert Password"
-                              autoComplete="new-password"
-                              name="nPassword"
-                              onChange={this.onChange}
-                            />
-                          </CInputGroup>
-                          <CButton
-                            //href=""
-                            color="success"
-                            block
-                            onClick={this.register}
-                          >
-                            Create Account
+                          <CButton color="danger" block onClick={this.delete}>
+                            Remove Account
                           </CButton>
                         </CForm>
                       </CCardBody>

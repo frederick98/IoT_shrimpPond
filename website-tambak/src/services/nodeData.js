@@ -18,11 +18,7 @@ const NodeData = (props) => {
       });
   });
   return (
-    //<div className="row">
     <div>
-      {/* <div className="d_flex my-4, text-uppercase">
-        <h1>Show all monitored data from MySQL</h1>
-      </div> */}
       <table class="table table-sm table-responsive-md table-bordered table-dark">
         <thead>
           <tr>
