@@ -2,9 +2,8 @@ import React, { useEffect } from "react";
 
 export function DeleteUser(type, userData) {
   type = "delUser";
-  //let url = "http://192.168.1.14/skrispi/IoT_shrimpPond/react-php/api/";
-  let url =
-    "http://192.168.100.16/skrispi/IoT_shrimpPond/react-php/api/index.php";
+  //let url = "http://170.20.10.6/skrispi/IoT_shrimpPond/react-php/api/";
+  let url = "http://localhost/skrispi/IoT_shrimpPond/react-php/api/";
   //let url = ("http://localhost/skrispi/IoT_shrimpPond/react-php/api/");
   return new Promise((resolve, reject) => {
     fetch(url + "?type=" + type + "&username=" + userData, {

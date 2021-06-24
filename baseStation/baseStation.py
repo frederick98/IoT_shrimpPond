@@ -19,7 +19,9 @@ import datetime
 import serial
 import mysql.connector
 import concurrent.futures
+import time
 from mysql.connector import Error
+from threading import Timer
 
 
 """
@@ -52,6 +54,7 @@ serial = serial.Serial(
 # do = ""
 # readTime = ""
 
+global ctNode1, ctNode2
 ctNode1 = 0;
 ctNode2 = 0;
 
@@ -124,7 +127,6 @@ def getNodeData(data):
         readTime = readTime.strftime('%Y-%m-%d %H:%M:%S')
         #print("Read Time: ", readTime)
         
-        nodeCount(node);
     return node, temp, turb, pH, sal, do, readTime, nodeStat, sensorStat
 
 
@@ -183,7 +185,7 @@ def updateDB(data):
     cursor.execute(query2, values2)
     
     # update node data counter
-    nodeCount(node)
+    #nodeCount(node)
     
     # close cursor & DB to save resources
     db.commit()
@@ -214,7 +216,8 @@ def getArduinoStatus(data):
     # splitting data
     splittedMessage = data.split("/")
     
-    # writing & formatting values 
+    # writing & formatting values
+    print("splittedMessage: ", splittedMessage)
     if len(splittedMessage) > 1:
         node = splittedMessage[0]
         temp = splittedMessage[1]
@@ -222,8 +225,8 @@ def getArduinoStatus(data):
         pH = splittedMessage[3]
         sal = splittedMessage[4]
         do = splittedMessage[5]
-        nodeStat = splittedMessage[7]
-        sensorStat = splittedMessage[8]
+        nodeStat = splittedMessage[6]
+        sensorStat = splittedMessage[7]
         readTime = datetime.datetime.now()
         
         readTime = readTime.strftime('%Y-%m-%d %H:%M:%S')
@@ -247,26 +250,26 @@ def updateNodeStat():
     cursor = db.cursor(buffered = True)
     
     # Decide which node offline
-    differ = 5
+    differ = 10
     if(abs(ctNode1 - ctNode2) > differ):
         readTime = datetime.datetime.now()
         readTime = readTime.strftime('%Y-%m-%d %H:%M:%S')
         query = ("UPDATE Node SET nodeStat=%s, sensorStat=%s, waktuNode=%s WHERE idNode=%s")
-        values = ('Offline', 'Not Monitoring', readTime, 1)
+        values = ('Online', 'Data Transfer Delayed', readTime, 1)
     elif(abs(ctNode2 - ctNode1) > differ):
         readTime = datetime.datetime.now()
         readTime = readTime.strftime('%Y-%m-%d %H:%M:%S')
         query = ("UPDATE Node SET nodeStat=%s, sensorStat=%s, waktuNode=%s WHERE idNode=%s")
-        values = ('Offline', 'Not Monitoring', readTime, 2)
+        values = ('Online', 'Data Transfer Delayed', readTime, 2)
     elif((ctNode1==0) and (ctNode2==0)):
         print("Both Blank")
         readTime = datetime.datetime.now()
         readTime = readTime.strftime('%Y-%m-%d %H:%M:%S')
         query1 = ("UPDATE Node SET nodeStat=%s, sensorStat=%s, waktuNode=%s WHERE idNode=%s")
-        values1 = ('Offline', 'Not Monitoring', readTime, 1)
+        values1 = ('Offline', 'Problem with Sensor, Please Check', readTime, 1)
         cursor.execute(query1, values1)
         query = ("UPDATE Node SET nodeStat=%s, sensorStat=%s, waktuNode=%s WHERE idNode=%s")
-        values = ('Offline', 'Not Monitoring', readTime, 2)
+        values = ('Offline', 'Problem with Sensor, Please Check', readTime, 2)
     
     # executing query
     cursor.execute(query, values)
@@ -275,7 +278,6 @@ def updateNodeStat():
     db.commit()
     cursor.close()
     db.close()
-    
     #print("Stat uploaded to DB")
     
     
@@ -284,11 +286,14 @@ this method counts how many data sent from node
 """
 def nodeCount(node):
     if(node == 1):
+        global ctNode1
         ctNode1 += 1
     elif(node == 2):
+        global ctNode2
         ctNode2 += 1
-    else:
-        print("Node not recognized!")
+    #else:
+    #    print("Node not recognized!")
+    #updateNodeStat()
 
 
 """
@@ -337,7 +342,8 @@ while mainMenu:
             print("Menu not Available!")
             main()
     elif(menu == "1"):
-        # apps is running
+        # apps is running, send request to start monitoring
+        serial.write(str.encode("m"))
         print("Monitoring Started...")
         print("Received Data: ")
         print("Node ID / Temperature / Turbidity / pH Stat / Salinity / DO Stat / Date & Time Received / Node Status / Monitoring Status")
@@ -349,17 +355,22 @@ while mainMenu:
                 future = executor.submit(getNodeData, decoded)
                 #print("Received data: ", future.result())
                 if future.result() != None:
-                    future2 = executor.submit(updateDB, future.result())
-                    print(future.result())
-                    if(future.result() == ('', '', '', '', '', '', '', '', '')):
-                       #print('test')
-                        updateNodeStat()
-                        print("Node Status Updated")
+                    #future2 = executor.submit(updateDB, future.result())
+                    #print("decoded1: ",future.result())
+                    if(future.result() != ('', '', '', '', '', '', '', '', '')):
+                        future2 = executor.submit(updateDB, future.result())
+                        print(future.result())
+                    else:
+                        t = Timer(2.0, updateNodeStat)
+                        t.start()
+                            #time.sleep(0.5)
+                        #updateNodeStat()
+                            #print("Node Status Updated")
     elif(menu =="2"):
         print("Requesting Node Status Check")
         print("Loading...")
         # send check request to arduino node
-        #serial.write(str.encode("check").strip())
+        serial.write(str.encode("c").strip())
         
         while(timer < 30):
             message = serial.readline().decode("ascii").strip()
@@ -371,13 +382,16 @@ while mainMenu:
                 future3 = executor.submit(getArduinoStatus, message)
                 
                 if future3.result() != None:
-                    print("Node Status Check completed.")
-                    print("Result: ", future3.result())
-                    print("Continue to Monitoring...")
-                    future4 = executor.submit(updateDB, future3. result())
-                    global nodeStat
-                    nodeStat = True
-                    testDataReceived += 1
+                    if(future3.result() != ('', '', '')):
+                        print("Node Status Check completed.")
+                        print("Result: ", future3.result())
+                        print("Continue to Monitoring...")
+                        future4 = executor.submit(updateDB, future3. result())
+                        global nodeStat
+                        nodeStat = True
+                        testDataReceived += 1
+                    else:
+                        print("Still Trying to connect to Node")
             
         if (testDataReceived == 0):
             print("Sensor Node is Not Responding/Offline. Please Check")

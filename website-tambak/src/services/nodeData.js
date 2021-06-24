@@ -7,7 +7,8 @@ const NodeData = (props) => {
   const [item, setItem] = useState([]);
 
   useEffect(() => {
-    let url = "http://192.168.100.16/skrispi/IoT_shrimpPond/react-php/api/";
+    //let url = "http://170.20.10.6/skrispi/IoT_shrimpPond/react-php/api/";
+    let url = "http://localhost/skrispi/IoT_shrimpPond/react-php/api/";
 
     //fetch("http://localhost/skrispi/IoT_shrimpPond/react-php/api/index.php")
     fetch(url + "?type=" + "node" + "&idN=" + type)

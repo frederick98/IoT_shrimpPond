@@ -26,14 +26,14 @@ class NodeCheck extends Component {
   // const refresh = () => {
   //   window.location.reload();
   // };
-  state = { seconds: 1 };
+  state = { seconds: 2 };
 
   componentDidMount() {
     //this.updateTimer = setInterval(() => this.loadNewData(), 10000);
 
     this.timer = setInterval(() => {
       this.setState({ seconds: this.state.seconds + 2 });
-    }, 20000);
+    }, 2000);
   }
 
   componentWillUnmount() {
