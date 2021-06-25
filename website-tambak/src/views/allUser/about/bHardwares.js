@@ -12,7 +12,8 @@ const Hardwares = () => {
         <div class="col-7">
           <img
             class="img-fluid rounded mb-4 mb-lg-0"
-            src="https://via.placeholder.com/600x400"
+            //src="https://via.placeholder.com/600x400"
+            src={"img/hardware/hw_sensors.JPG"}
             alt="..."
           />
         </div>
@@ -27,7 +28,7 @@ const Hardwares = () => {
           <p class="text-justify">
             This application used exactly 5 sensor, which is Turbidity Sensor,
             Temperature Sensor, Dissolved Oxygen Sensor, pH Sensor, and
-            Electrical Conductivity (aka. Salinity) Sensor.
+            Electrical Conductivity (aka. Salinity) Sensor as shown in picture.
           </p>
         </div>
       </div>
@@ -36,7 +37,8 @@ const Hardwares = () => {
         <div class="col-7">
           <img
             class="img-fluid rounded mb-4 mb-lg-0"
-            src="https://via.placeholder.com/600x400"
+            //src="https://via.placeholder.com/600x400"
+            src={"img/hardware/hw_ard.JPG"}
             alt="..."
           />
         </div>
@@ -64,7 +66,8 @@ const Hardwares = () => {
         <div class="col-7">
           <img
             class="img-fluid rounded mb-4 mb-lg-0"
-            src="https://via.placeholder.com/600x400"
+            //src="https://via.placeholder.com/600x400"
+            src={"img/hardware/hw_pi.jpg"}
             alt="..."
           />
         </div>

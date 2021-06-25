@@ -8,7 +8,7 @@ const Features = () => {
           <h1>Application Features</h1>
         </div>
       </div>
-      <div class="row">
+      {/* <div class="row">
         <div class="col-7">
           <img
             class="img-fluid rounded mb-4 mb-lg-0"
@@ -30,13 +30,33 @@ const Features = () => {
             </strong>
           </p>
         </div>
+      </div> */}
+      <div class="row">
+        <div class="col-7">
+          <img
+            class="img-fluid rounded mb-4 mb-lg-0"
+            //src="https://via.placeholder.com/600x400"
+            src={"img/features/feat_check.jpeg"}
+            alt="..."
+          />
+        </div>
+        <div class="col-5">
+          <h3 class="font-weight-light">Node Status Checking</h3>
+          <p class="text-justify">
+            What if some of the sensor's node are not working? What if static
+            data shown? How do you check whether all of the node is online? Here
+            we have a feature that allows user to check all the node status, and
+            reports to user if something is not right.
+          </p>
+        </div>
       </div>
       <div class="my-3"></div>
       <div class="row">
         <div class="col-7">
           <img
             class="img-fluid rounded mb-4 mb-lg-0"
-            src="https://via.placeholder.com/600x400"
+            //src="https://via.placeholder.com/600x400"
+            src={"img/features/feat_monitor.jpeg"}
             alt="..."
           />
         </div>
@@ -54,22 +74,23 @@ const Features = () => {
         <div class="col-7">
           <img
             class="img-fluid rounded mb-4 mb-lg-0"
-            src="https://via.placeholder.com/600x400"
+            //src="https://via.placeholder.com/600x400"
+            src={"img/features/feat_nAdd.jpeg"}
             alt="..."
           />
         </div>
         <div class="col-5">
-          <h3 class="font-weight-light">Node Checking</h3>
+          <h3 class="font-weight-light">Add New Node</h3>
           <p class="text-justify">
-            What if some of the sensor's node are not working? What if static
-            data shown? How do you check whether all of the node is online? Here
-            we have a feature that allows user to check all the node status, and
-            reports to user if something is not right.
+            Expanding your business? Did you add more pond? Ok you need a new
+            node. With our "Add New Node" features, you can easily adds new node
+            to put in the pond. Add the pond first, then add the node. You don't
+            need to worry about anything.
           </p>
         </div>
       </div>
       <div class="my-3"></div>
-      <div class="row">
+      {/* <div class="row">
         <div class="col-7">
           <img
             class="img-fluid rounded mb-4 mb-lg-0"
@@ -89,6 +110,30 @@ const Features = () => {
             Reach us by going to the "About Us" section, and contact us uding
             any of the available number. Any suggestion and critics will help us
             design this application to be better :D
+          </p>
+        </div>
+      </div> */}
+      <div class="row">
+        <div class="col-7">
+          <img
+            class="img-fluid rounded mb-4 mb-lg-0"
+            //src="https://via.placeholder.com/600x400"
+            src={"img/features/feat_user.png"}
+            alt="..."
+          />
+        </div>
+        <div class="col-5">
+          <h3 class="font-weight-light">Manage User Access</h3>
+          <p class="text-justify">
+            So you add new employee to be behind the desk. You can easily sets
+            the new account for that guy.
+          </p>
+          <p class="text-justify">
+            "Oh No, I fired him because he's working recklessly. I don't want
+            him to still be able to access the apps."
+            <br />
+            Don't Worry! you can easily remove that account as well as adding
+            new user!
           </p>
         </div>
       </div>

@@ -10,7 +10,8 @@ const AboutUs = () => {
         <div class="col col-3">
           <img
             class="img-fluid rounded mb-4 mb-lg-0"
-            src="https://via.placeholder.com/240x320"
+            //src="https://via.placeholder.com/240x320"
+            src={"img/author/me.jpg"}
             alt="..."
           />
         </div>

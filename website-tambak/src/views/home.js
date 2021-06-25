@@ -60,14 +60,28 @@ class MainPage extends Component {
       }
     }
     return (
-      <div className="c-app c-default-layout flex-row align-items-center">
+      <div
+        //style={{ backgroundImage: { background } }}
+        className="c-app c-default-layout flex-row align-items-center"
+        style={{
+          backgroundImage: "url(/img/view.JPG)",
+          backgroundPosition: "center",
+          backgroundSize: "cover",
+          backgroundRepeat: "no-repeat",
+        }}
+      >
         <CContainer>
           <CRow className="justify-content-center">
-            <CCol md-auto className="py-5 align-middle">
-              <h2>
-                WSN-Based Water Quality Monitoring Application for Shrimp Pond
-              </h2>
-              <h5 className="py-2">2016730040 - Frederick</h5>
+            <CCol md-auto className="py-5 my-4 align-middle">
+              {/* <div class="my-4"></div> */}
+              <h1 style={{ color: "white" }}>
+                <strong>
+                  WSN-Based Water Quality Monitoring Application for Shrimp Pond
+                </strong>
+              </h1>
+              <h4 className="py-2" style={{ color: "white" }}>
+                <strong>2016730040 - Frederick</strong>
+              </h4>
             </CCol>
             <CCol md="8">
               <CCardGroup>
@@ -75,7 +89,9 @@ class MainPage extends Component {
                   <CCardBody>
                     <CForm>
                       <h1>Login</h1>
-                      <p className="text-muted">Sign In to your account</p>
+                      <p className="text-muted" style={{ color: "black" }}>
+                        Sign In to your account
+                      </p>
                       <CInputGroup className="mb-3">
                         <CInputGroupPrepend>
                           <CInputGroupText>
