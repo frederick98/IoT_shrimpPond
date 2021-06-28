@@ -53,13 +53,13 @@ OneWire ds(sensor_temperature_pin);
 #define VREF 5000    //VREF (mv)
 #define ADC_RES 1024 //ADC Resolution
 #define TWO_POINT_CALIBRATION 1 //Two-point calibration Mode=1
-#define READ_TEMP (25) //Current water temperature ℃, Or temperature sensor function
+#define READ_TEMP (25) //Current water temperature celcius, Or temperature sensor function
 //Two-point calibration needs to be filled CAL2_V and CAL2_T
 //CAL1 High temperature point, CAL2 Low temperature point
 #define CAL1_V (2260) //mv, high temp point
-#define CAL1_T (34)   //℃, high temp point
+#define CAL1_T (34)   //celcius, high temp point
 #define CAL2_V (1777) //mv, low temp point
-#define CAL2_T (23)   //℃, low temp point
+#define CAL2_T (23)   //celcius, low temp point
 float tempRead = 25;
 String doValue = "";
 const uint16_t DO_Table[41] = {
@@ -100,9 +100,13 @@ String delimiter = "/";
  *    status code.
  */
 void setup() {
+  // initialize pH sensor
   ph.begin();
+  // initialize EC sensor
   ec.begin();
+  // initialize Serial
   Serial.begin(9600); //<- still bugs here about message spacing
+  // initialize XBee
   xbee.begin(9600);
 }
 
@@ -132,15 +136,31 @@ void loop() {
 //  Serial.println(doSensing());
 //  Serial.println("========================================");
 
-  // start sensor reading, then send the data to xbee
-  String message = dataConvert();
-
-  // send the message using xbee (fixed, no more calling sendMessage method)
-  //sendMessage(message);
-  xbee.print(message);
-  Serial.println(message);
+  // listening for raspi's command
+  if(xbee.available()){
+    byte command = xbee.read();
+    boolean orders = true;
+    // check status
+    if(command == 's'){
+      String reply = deviceStatus();
+      
+      // send the message using xbee (fixed, no more calling sendMessage method)
+      //sendMessage(message);
+      xbee.print(reply);
+      Serial.println(reply);
+    }
+    else if(command == 'm'){
+      //Serial.println(message);
+      // start sensor reading, then send the data to xbee
+      String message = dataConvert();
+      // send the message using xbee (fixed, no more calling sendMessage method)
+      //sendMessage(message);
+      xbee.print(message);
+      Serial.println(message);
+    }
+  }  
   // sets delay so it repeated every 1 secs
-  delay(1000);
+  //delay(750);
 }
 
 /*
@@ -226,8 +246,8 @@ float temperatureSensing(){
 }
 
 /*
- * method untuk melakukan konversi hasil bacaan dari sensor turbidity, karena bacaan
- * sensor menghasilkan range angka 0 hingga 1023
+ * gets turbidity's reading conversion result, because sensor's reading range vary 
+ * between 0 to 1023.
  */
 float turbiditySensing(){
   float voltage = analogRead(sensor_turbidity_pin) * (5.0 / 1024.0);
@@ -235,7 +255,7 @@ float turbiditySensing(){
 }
 
 /*
- * method untuk melakukan pengukuran pH berdasarkan bacaan dari pH sensor
+ * gets pH sensor reading conversion result
  */
 float pHSensing(){
   static unsigned long timepoint = millis();
@@ -264,8 +284,7 @@ float pHSensing(){
 }
 
 /*
- * method untuk melakukan pembacaan kadar garam (salinitas) dari electrical conductivity
- * sensor
+ * gets EC sensor salinity reading conversion result
  */
 float salinitySensing(){
   static unsigned long timepoint = millis();
@@ -296,7 +315,7 @@ float salinitySensing(){
 }
 
 /*
- * method ini melakukan pembacaan kadar oksigen (dissolved oxygen) dari DO sensor
+ * gets DO sensor reading conversion result. this methods calls readDO method
  */
 String doSensing(){
   tempRead = temperatureSensing();
@@ -328,7 +347,7 @@ String deviceStatus(){
   node = (nodeStatus())? "Online" : "Offline";
 
   // sensor status to string
-  sensor = (sensorStatus())? "Monitoring" : "Not Monitoring";
+  sensor = (sensorStatus())? "Sensor Works Well" : "Problem with Sensor, Please Check";
 
   // join both string then return the results
   result = node + delimiter + sensor;

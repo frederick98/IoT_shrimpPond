@@ -370,7 +370,7 @@ while mainMenu:
         print("Requesting Node Status Check")
         print("Loading...")
         # send check request to arduino node
-        serial.write(str.encode("c").strip())
+        serial.write(str.encode("s").strip())
         
         while(timer < 30):
             message = serial.readline().decode("ascii").strip()
