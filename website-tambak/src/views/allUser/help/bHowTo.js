@@ -10,7 +10,8 @@ const HowTo = () => {
         <div class="col-7">
           <img
             class="img-fluid rounded mb-4 mb-lg-0"
-            src="https://via.placeholder.com/600x400"
+            //src="https://via.placeholder.com/600x400"
+            src={"img/howTo/how_on.JPG"}
             alt="..."
           />
         </div>
@@ -28,7 +29,8 @@ const HowTo = () => {
         <div class="col-7">
           <img
             class="img-fluid rounded mb-4 mb-lg-0"
-            src="https://via.placeholder.com/600x400"
+            //src="https://via.placeholder.com/600x400"
+            src={"img/howTo/how_spread.jpg"}
             alt="..."
           />
         </div>
@@ -50,7 +52,8 @@ const HowTo = () => {
         <div class="col-7">
           <img
             class="img-fluid rounded mb-4 mb-lg-0"
-            src="https://via.placeholder.com/600x400"
+            //src="https://via.placeholder.com/600x400"
+            src={"img/howTo/how_set.jpeg"}
             alt="..."
           />
         </div>
@@ -70,7 +73,8 @@ const HowTo = () => {
         <div class="col-7">
           <img
             class="img-fluid rounded mb-4 mb-lg-0"
-            src="https://via.placeholder.com/600x400"
+            //src="https://via.placeholder.com/600x400"
+            src={"img/howTo/how_start.jpeg"}
             alt="..."
           />
         </div>
