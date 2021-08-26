@@ -1,16 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import {
-  CBadge,
   CButton,
-  CButtonGroup,
   CCard,
   CCardBody,
   CCardFooter,
-  CCardHeader,
   CCol,
   CProgress,
   CRow,
-  CCallout,
   CModal,
   CModalBody,
   CModalFooter,
@@ -18,7 +14,7 @@ import {
   CModalTitle,
 } from "@coreui/react";
 
-import MainChartExample from "../../helper/charts/MainChartExample.js";
+//import MainChartExample from "../../helper/charts/MainChartExample.js";
 
 const DataGraphics = () => {
   const [warning, setWarning] = React.useState(true);
@@ -52,7 +48,7 @@ const DataGraphics = () => {
               </CButtonGroup> */}
             </CCol>
           </CRow>
-          <MainChartExample style={{ height: "300px", marginTop: "40px" }} />
+          {/* <MainChartExample style={{ height: "300px", marginTop: "40px" }} /> */}
         </CCardBody>
         <CCardFooter>
           <CRow className="text-center">

@@ -1,30 +1,5 @@
 import React from "react";
 
-const Toaster = React.lazy(() =>
-  import("./views/helper/notifications/toaster/Toaster")
-);
-
-const Paginations = React.lazy(() =>
-  import("./views/helper/base/paginations/Pagnations")
-);
-const ProgressBar = React.lazy(() =>
-  import("./views/helper/base/progress-bar/ProgressBar")
-);
-
-const BrandButtons = React.lazy(() =>
-  import("./views/helper/buttons/brand-buttons/BrandButtons")
-);
-const Buttons = React.lazy(() =>
-  import("./views/helper/buttons/buttons/Buttons")
-);
-const CoreUIIcons = React.lazy(() =>
-  import("./views/helper/icons/coreui-icons/CoreUIIcons")
-);
-const Brands = React.lazy(() => import("./views/helper/icons/brands/Brands"));
-const Alerts = React.lazy(() =>
-  import("./views/helper/notifications/alerts/Alerts")
-);
-
 const MainPage = React.lazy(() => import("./views/home"));
 
 // Admin-Specific Routes
@@ -122,26 +97,6 @@ const routes = [
 
   { path: "/", exact: true, name: "Home" },
   { path: "/mainPage", name: "Main", component: MainPage },
-  { path: "/base/paginations", name: "Paginations", component: Paginations },
-  { path: "/base/progress-bar", name: "Progress Bar", component: ProgressBar },
-  { path: "/buttons", name: "Buttons", component: Buttons, exact: true },
-  { path: "/buttons/buttons", name: "Buttons", component: Buttons },
-  {
-    path: "/buttons/brand-buttons",
-    name: "Brand Buttons",
-    component: BrandButtons,
-  },
-  { path: "/icons", exact: true, name: "Icons", component: CoreUIIcons },
-  { path: "/icons/coreui-icons", name: "CoreUI Icons", component: CoreUIIcons },
-  { path: "/icons/brands", name: "Brands", component: Brands },
-  {
-    path: "/notifications",
-    name: "Notifications",
-    component: Alerts,
-    exact: true,
-  },
-  { path: "/notifications/alerts", name: "Alerts", component: Alerts },
-  { path: "/notifications/toaster", name: "Toaster", component: Toaster },
 ];
 
 export default routes;
